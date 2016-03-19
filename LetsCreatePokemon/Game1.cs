@@ -1,4 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿//------------------------------------------------------
+// 
+// Copyright - (c) - 2016 - Mille Boström 
+//
+// Youtube channel - https://www.speedcoding.net
+//------------------------------------------------------
+using System;
+using LetsCreatePokemon.Inputs;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace LetsCreatePokemon
@@ -11,11 +19,39 @@ namespace LetsCreatePokemon
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Texture2D texture;
+        InputKeyboard inputKeyboard;
+        Vector2 spritePosition;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            inputKeyboard = new InputKeyboard();
+            inputKeyboard.NewInput += InputKeyboard_NewInput;
             Content.RootDirectory = "Content";
+            spritePosition = new Vector2(100, 100);
+        }
+
+        private void InputKeyboard_NewInput(object sender, EventArg.NewInputEventArgs e)
+        {
+            switch (e.Inputs)
+            {
+                case Common.Inputs.Left:
+                    spritePosition.X--;
+                    break;
+                case Common.Inputs.Up:
+                    spritePosition.Y--;
+                    break;
+                case Common.Inputs.Right:
+                    spritePosition.X++;
+                    break;
+                case Common.Inputs.Down:
+                    spritePosition.Y++;
+                    break;
+                case Common.Inputs.None:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         /// <summary>
@@ -60,7 +96,7 @@ namespace LetsCreatePokemon
         protected override void Update(GameTime gameTime)
         {
             // TODO: Add your update logic here
-
+            inputKeyboard.Update(gameTime.ElapsedGameTime.Milliseconds);
             base.Update(gameTime);
         }
 
@@ -73,7 +109,7 @@ namespace LetsCreatePokemon
             GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin();
-            spriteBatch.Draw(texture, new Rectangle(100, 100, 32, 92), Color.White);
+            spriteBatch.Draw(texture, new Rectangle((int) spritePosition.X, (int) spritePosition.Y, 42, 57), Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);
