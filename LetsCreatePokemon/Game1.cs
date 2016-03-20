@@ -5,8 +5,11 @@
 // Youtube channel - https://www.speedcoding.net
 //------------------------------------------------------
 using System;
+using System.Collections.Generic;
 using LetsCreatePokemon.Inputs;
 using LetsCreatePokemon.Services.Content;
+using LetsCreatePokemon.World;
+using LetsCreatePokemon.World.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -19,43 +22,15 @@ namespace LetsCreatePokemon
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Texture2D texture;
-        Texture2D textureNotFound;
-        SpriteFont font;
-        InputKeyboard inputKeyboard;
-        Vector2 spritePosition;
+        Entity entity;
         IContentLoader contentLoader;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            inputKeyboard = new InputKeyboard();
-            inputKeyboard.NewInput += InputKeyboard_NewInput;
+            entity = new Entity("MyFirstEntity");
+            entity.AddComponent(new TestComponent(entity));
             Content.RootDirectory = "Content";
-            spritePosition = new Vector2(100, 100);
-        }
-
-        private void InputKeyboard_NewInput(object sender, EventArg.NewInputEventArgs e)
-        {
-            switch (e.Inputs)
-            {
-                case Common.Inputs.Left:
-                    spritePosition.X--;
-                    break;
-                case Common.Inputs.Up:
-                    spritePosition.Y--;
-                    break;
-                case Common.Inputs.Right:
-                    spritePosition.X++;
-                    break;
-                case Common.Inputs.Down:
-                    spritePosition.Y++;
-                    break;
-                case Common.Inputs.None:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
         }
 
         /// <summary>
@@ -80,10 +55,7 @@ namespace LetsCreatePokemon
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             contentLoader = new ContentLoader(Content);
-            texture = contentLoader.LoadTexture("NPC/main_character_single");
-            textureNotFound = contentLoader.LoadTexture("textureDoesNotExist");
-            font = contentLoader.LoadFont("NotFoundFont");
-            // TODO: use this.Content to load your game content here
+            entity.LoadContent(contentLoader);
         }
 
         /// <summary>
@@ -102,8 +74,7 @@ namespace LetsCreatePokemon
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // TODO: Add your update logic here
-            inputKeyboard.Update(gameTime.ElapsedGameTime.Milliseconds);
+            entity.Update(gameTime.ElapsedGameTime.Milliseconds);
             base.Update(gameTime);
         }
 
@@ -116,9 +87,7 @@ namespace LetsCreatePokemon
             GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin();
-            spriteBatch.Draw(texture, new Rectangle((int) spritePosition.X, (int) spritePosition.Y, 42, 57), Color.White);
-            spriteBatch.Draw(textureNotFound, new Rectangle(300, 300, 100, 100), Color.White);
-            spriteBatch.DrawString(font, "My text", new Vector2(420, 420), Color.White);
+            entity.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
