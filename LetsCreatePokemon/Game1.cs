@@ -6,6 +6,7 @@
 //------------------------------------------------------
 using System;
 using LetsCreatePokemon.Inputs;
+using LetsCreatePokemon.Services.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -19,8 +20,11 @@ namespace LetsCreatePokemon
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Texture2D texture;
+        Texture2D textureNotFound;
+        SpriteFont font;
         InputKeyboard inputKeyboard;
         Vector2 spritePosition;
+        IContentLoader contentLoader;
 
         public Game1()
         {
@@ -75,7 +79,10 @@ namespace LetsCreatePokemon
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            texture = Content.Load<Texture2D>("Textures/NPC/main_character_single");
+            contentLoader = new ContentLoader(Content);
+            texture = contentLoader.LoadTexture("NPC/main_character_single");
+            textureNotFound = contentLoader.LoadTexture("textureDoesNotExist");
+            font = contentLoader.LoadFont("NotFoundFont");
             // TODO: use this.Content to load your game content here
         }
 
@@ -110,6 +117,8 @@ namespace LetsCreatePokemon
 
             spriteBatch.Begin();
             spriteBatch.Draw(texture, new Rectangle((int) spritePosition.X, (int) spritePosition.Y, 42, 57), Color.White);
+            spriteBatch.Draw(textureNotFound, new Rectangle(300, 300, 100, 100), Color.White);
+            spriteBatch.DrawString(font, "My text", new Vector2(420, 420), Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);
