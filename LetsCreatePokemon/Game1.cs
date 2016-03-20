@@ -6,6 +6,7 @@
 //------------------------------------------------------
 using System;
 using System.Collections.Generic;
+using LetsCreatePokemon.Data;
 using LetsCreatePokemon.Inputs;
 using LetsCreatePokemon.Services.Content;
 using LetsCreatePokemon.World;
@@ -29,7 +30,15 @@ namespace LetsCreatePokemon
         {
             graphics = new GraphicsDeviceManager(this);
             entity = new Entity("MyFirstEntity");
-            entity.AddComponent(new TestComponent(entity));
+            entity.AddComponent(new Sprite(entity, new SpriteData
+            {
+                Color = Color.White,
+                Height = 32,
+                Width = 32,
+                TextureName = "NPC/main_character_single",
+                XTilePosition = 2,
+                YTilePosition = 2
+            }));
             Content.RootDirectory = "Content";
         }
 

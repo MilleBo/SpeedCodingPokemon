@@ -101,6 +101,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\Enums.cs" />
+    <Compile Include="Data\SpriteData.cs" />
     <Compile Include="EventArg\NewInputEventArgs.cs" />
     <Compile Include="GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
@@ -112,7 +113,7 @@
     <Compile Include="Services\Content\ContentLoader.cs" />
     <Compile Include="Services\Content\IContentLoader.cs" />
     <Compile Include="World\Component.cs" />
-    <Compile Include="World\Components\TestComponent.cs" />
+    <Compile Include="World\Components\Sprite.cs" />
     <Compile Include="World\Entity.cs" />
     <Compile Include="World\IComponentOwner.cs" />
   </ItemGroup>
