@@ -11,6 +11,7 @@ using LetsCreatePokemon.Inputs;
 using LetsCreatePokemon.Services.Content;
 using LetsCreatePokemon.World;
 using LetsCreatePokemon.World.Components;
+using LetsCreatePokemon.World.Components.Movements;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -33,12 +34,13 @@ namespace LetsCreatePokemon
             entity.AddComponent(new Sprite(entity, new SpriteData
             {
                 Color = Color.White,
-                Height = 32,
-                Width = 32,
+                Height = 19,
+                Width = 15,
                 TextureName = "NPC/main_character_single",
                 XTilePosition = 2,
                 YTilePosition = 2
             }));
+            entity.AddComponent(new MovementPlayer(entity, 1, new InputKeyboard()));
             Content.RootDirectory = "Content";
         }
 

@@ -14,7 +14,7 @@ namespace LetsCreatePokemon.World
         }
 
         public virtual void LoadContent(IContentLoader contentLoader) { }
-        public abstract void Update(double gameTime);
-        public abstract void Draw(SpriteBatch spriteBatch);
+        public virtual void Update(double gameTime) { }
+        public virtual void Draw(SpriteBatch spriteBatch) { }
     }
 }

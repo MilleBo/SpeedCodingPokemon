@@ -112,10 +112,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Content\ContentLoader.cs" />
     <Compile Include="Services\Content\IContentLoader.cs" />
+    <Compile Include="Services\UtilityService.cs" />
     <Compile Include="World\Component.cs" />
+    <Compile Include="World\Components\Movements\Movement.cs" />
+    <Compile Include="World\Components\Movements\MovementPlayer.cs" />
     <Compile Include="World\Components\Sprite.cs" />
     <Compile Include="World\Entity.cs" />
     <Compile Include="World\IComponentOwner.cs" />
+    <Compile Include="World\Tiles\Tile.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Textures\NPC\main_character_single.xnb">
