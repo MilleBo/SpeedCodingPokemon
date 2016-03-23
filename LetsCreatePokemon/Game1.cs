@@ -34,12 +34,12 @@ namespace LetsCreatePokemon
             entity.AddComponent(new Sprite(entity, new SpriteData
             {
                 Color = Color.White,
-                Height = 19,
-                Width = 15,
+                Height = 19*3,
+                Width = 15*3,
                 TextureName = "NPC/main_character_single",
                 XTilePosition = 2,
                 YTilePosition = 2
-            }));
+            }, new Rectangle(0, 0, 16, 19)));
             entity.AddComponent(new MovementPlayer(entity, 1, new InputKeyboard()));
             Content.RootDirectory = "Content";
         }

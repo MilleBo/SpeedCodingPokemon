@@ -22,6 +22,11 @@ namespace LetsCreatePokemon.World.Components
             DrawFrame = new Rectangle(0, 0, spriteData.Width, spriteData.Height);
         }
 
+        public Sprite(IComponentOwner owner, SpriteData spriteData, Rectangle drawFrame) : this(owner, spriteData)
+        {
+            DrawFrame = drawFrame;
+        }
+
         public override void LoadContent(IContentLoader contentLoader)
         {
             texture = contentLoader.LoadTexture(spriteData.TextureName);

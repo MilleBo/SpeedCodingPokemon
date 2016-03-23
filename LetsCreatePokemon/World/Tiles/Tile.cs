@@ -8,7 +8,7 @@ namespace LetsCreatePokemon.World.Tiles
 {
     internal class Tile
     {
-        public const int Width = 16;
-        public const int Height = 16; 
+        public const int Width = 16*3;
+        public const int Height = 16*3; 
     }
 }
