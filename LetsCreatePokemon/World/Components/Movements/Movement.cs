@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using LetsCreatePokemon.Common;
 using LetsCreatePokemon.Services;
+using LetsCreatePokemon.World.Components.Animations;
 using LetsCreatePokemon.World.Tiles;
 using Microsoft.Xna.Framework;
 
@@ -14,12 +11,14 @@ namespace LetsCreatePokemon.World.Components.Movements
     {
         private readonly float speed;
         protected Vector2 wantedPosition;
-        protected bool InMovement; 
+        protected bool InMovement;
+        private readonly AnimationWalking animationWalking; 
 
         protected Movement(IComponentOwner owner, float speed) : base(owner)
         {
             this.speed = speed;
             InMovement = false; 
+            animationWalking = new AnimationWalking(16, 20, 2, Directions.Down);
         }
 
         protected void Move(Directions direction)
@@ -45,6 +44,9 @@ namespace LetsCreatePokemon.World.Components.Movements
                     throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
             }
             InMovement = true;
+            animationWalking.ChangeDirection(direction);
+            var animation = Owner.GetComponent<Animation>(); 
+            animation.PlayAnimation(animationWalking);
         }
 
         public override void Update(double gameTime)
@@ -80,7 +82,9 @@ namespace LetsCreatePokemon.World.Components.Movements
             var sprite = Owner.GetComponent<Sprite>();
             sprite.UpdateTilePosition((int) (wantedPosition.X/Tile.Width), (int) (wantedPosition.Y/Tile.Height));
             sprite.ResetPositionOffset();
-            InMovement = false; 
+            InMovement = false;
+            var animation = Owner.GetComponent<Animation>();
+            animation.StopAnimation();
         }
     }
 }

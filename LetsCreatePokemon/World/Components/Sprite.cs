@@ -58,5 +58,10 @@ namespace LetsCreatePokemon.World.Components
         {
             spriteBatch.Draw(texture, new Rectangle((int)CurrentPosition.X, (int)CurrentPosition.Y, spriteData.Width, spriteData.Height), DrawFrame, spriteData.Color);
         }
+
+        public void UpdateDrawFrame(Rectangle drawFrame)
+        {
+            DrawFrame = drawFrame; 
+        }
     }
 }
