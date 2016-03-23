@@ -30,10 +30,10 @@ namespace LetsCreatePokemon.World.Components.Movements
             switch (direction)
             {
                 case Directions.Left:
-                    wantedPosition = new Vector2(x - Tile.Width,y * Tile.Height);
+                    wantedPosition = new Vector2(x - Tile.Width,y);
                     break;
                 case Directions.Up:
-                    wantedPosition = new Vector2(x * Tile.Width,y  - Tile.Height);
+                    wantedPosition = new Vector2(x,y  - Tile.Height);
                     break;
                 case Directions.Right:
                     wantedPosition = new Vector2(x + Tile.Width, y);
