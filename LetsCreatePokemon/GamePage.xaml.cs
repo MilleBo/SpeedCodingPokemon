@@ -22,7 +22,7 @@ namespace LetsCreatePokemon
     /// </summary>
     public sealed partial class GamePage : Page
     {
-		readonly Game1 _game;
+		readonly PokemonGame _game;
 
 		public GamePage()
         {
@@ -30,7 +30,7 @@ namespace LetsCreatePokemon
 
 			// Create the game.
 			var launchArguments = string.Empty;
-            _game = MonoGame.Framework.XamlGame<Game1>.Create(launchArguments, Window.Current.CoreWindow, swapChainPanel);
+            _game = MonoGame.Framework.XamlGame<PokemonGame>.Create(launchArguments, Window.Current.CoreWindow, swapChainPanel);
         }
     }
 }

@@ -8,7 +8,10 @@ using System;
 using System.Collections.Generic;
 using LetsCreatePokemon.Data;
 using LetsCreatePokemon.Inputs;
+using LetsCreatePokemon.Screens;
+using LetsCreatePokemon.Screens.ScreenTransitionEffects;
 using LetsCreatePokemon.Services.Content;
+using LetsCreatePokemon.Services.Screens;
 using LetsCreatePokemon.World;
 using LetsCreatePokemon.World.Components;
 using LetsCreatePokemon.World.Components.Animations;
@@ -21,29 +24,22 @@ namespace LetsCreatePokemon
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class PokemonGame : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Entity entity;
         IContentLoader contentLoader;
+        ScreenLoader screenLoader;
 
-        public Game1()
+        public PokemonGame()
         {
             graphics = new GraphicsDeviceManager(this);
-            entity = new Entity("MyFirstEntity");
-            entity.AddComponent(new Sprite(entity, new SpriteData
-            {
-                Color = Color.White,
-                Height = 19*3,
-                Width = 15*3,
-                TextureName = "NPC/main_character",
-                XTilePosition = 2,
-                YTilePosition = 2
-            }, new Rectangle(0, 0, 16, 19)));
-            entity.AddComponent(new MovementPlayer(entity, 1, new InputKeyboard()));
-            entity.AddComponent(new Animation(entity));
             Content.RootDirectory = "Content";
+            contentLoader = new ContentLoader(Content);
+            screenLoader = new ScreenLoader(new ScreenTransitionEffectFadeOut(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, 5),
+                new ScreenTransitionEffectFadeIn(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, 3), contentLoader);
+            screenLoader.LoadScreen(new ScreenWorld(screenLoader));
         }
 
         /// <summary>
@@ -67,8 +63,7 @@ namespace LetsCreatePokemon
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            contentLoader = new ContentLoader(Content);
-            entity.LoadContent(contentLoader);
+            screenLoader.LoadContent();
         }
 
         /// <summary>
@@ -87,7 +82,7 @@ namespace LetsCreatePokemon
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            entity.Update(gameTime.ElapsedGameTime.Milliseconds);
+            screenLoader.Update(gameTime.ElapsedGameTime.Milliseconds);
             base.Update(gameTime);
         }
 
@@ -100,7 +95,7 @@ namespace LetsCreatePokemon
             GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin();
-            entity.Draw(spriteBatch);
+            screenLoader.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);

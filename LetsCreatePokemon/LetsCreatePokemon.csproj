@@ -106,12 +106,20 @@
     <Compile Include="GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Game1.cs" />
+    <Compile Include="PokemonGame.cs" />
     <Compile Include="Inputs\Input.cs" />
     <Compile Include="Inputs\InputKeyboard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Screens\Screen.cs" />
+    <Compile Include="Screens\ScreenTransitionEffects\IScreenTransitionEffect.cs" />
+    <Compile Include="Screens\ScreenTransitionEffects\ScreenTransitionEffectFade.cs" />
+    <Compile Include="Screens\ScreenTransitionEffects\ScreenTransitionEffectFadeIn.cs" />
+    <Compile Include="Screens\ScreenTransitionEffects\ScreenTransitionEffectFadeOut.cs" />
+    <Compile Include="Screens\ScreenWorld.cs" />
     <Compile Include="Services\Content\ContentLoader.cs" />
     <Compile Include="Services\Content\IContentLoader.cs" />
+    <Compile Include="Services\Screens\IScreenLoader.cs" />
+    <Compile Include="Services\Screens\ScreenLoader.cs" />
     <Compile Include="Services\UtilityService.cs" />
     <Compile Include="World\Component.cs" />
     <Compile Include="World\Components\Animations\Animation.cs" />
@@ -135,6 +143,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\NPC\main_character.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\ScreenEffects\white_block.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="project.json" />
