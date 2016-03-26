@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LetsCreatePokemon.Services.Content
 {
-    internal interface IContentLoader
+    public interface IContentLoader
     {
         Texture2D LoadTexture(string textureName);
         SpriteFont LoadFont(string fontName);

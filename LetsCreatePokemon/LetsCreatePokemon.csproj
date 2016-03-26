@@ -130,7 +130,10 @@
     <Compile Include="World\Components\Sprite.cs" />
     <Compile Include="World\Entity.cs" />
     <Compile Include="World\IComponentOwner.cs" />
+    <Compile Include="World\Tiles\Test\TileGenerator.cs" />
     <Compile Include="World\Tiles\Tile.cs" />
+    <Compile Include="World\Tiles\TileFrame.cs" />
+    <Compile Include="World\Tiles\TileGraphic.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Textures\NPC\main_character_single.xnb">
@@ -147,6 +150,9 @@
     </Content>
     <Content Include="Content\Textures\ScreenEffects\white_block.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Tiles\main_tile.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="project.json" />
   </ItemGroup>

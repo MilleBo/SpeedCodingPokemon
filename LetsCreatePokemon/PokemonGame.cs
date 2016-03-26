@@ -4,18 +4,12 @@
 //
 // Youtube channel - https://www.speedcoding.net
 //------------------------------------------------------
-using System;
-using System.Collections.Generic;
-using LetsCreatePokemon.Data;
-using LetsCreatePokemon.Inputs;
+
 using LetsCreatePokemon.Screens;
 using LetsCreatePokemon.Screens.ScreenTransitionEffects;
 using LetsCreatePokemon.Services.Content;
 using LetsCreatePokemon.Services.Screens;
 using LetsCreatePokemon.World;
-using LetsCreatePokemon.World.Components;
-using LetsCreatePokemon.World.Components.Animations;
-using LetsCreatePokemon.World.Components.Movements;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -35,6 +29,8 @@ namespace LetsCreatePokemon
         public PokemonGame()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferWidth = 240;
+            graphics.PreferredBackBufferHeight = 160;
             Content.RootDirectory = "Content";
             contentLoader = new ContentLoader(Content);
             screenLoader = new ScreenLoader(new ScreenTransitionEffectFadeOut(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, 5),

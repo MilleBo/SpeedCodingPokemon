@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -31,6 +32,10 @@ namespace LetsCreatePokemon
 			// Create the game.
 			var launchArguments = string.Empty;
             _game = MonoGame.Framework.XamlGame<PokemonGame>.Create(launchArguments, Window.Current.CoreWindow, swapChainPanel);
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(240, 160));
+            ApplicationView.PreferredLaunchViewSize = new Size(240, 160);
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+            
         }
     }
 }
