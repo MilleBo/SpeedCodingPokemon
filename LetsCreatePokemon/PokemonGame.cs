@@ -9,6 +9,7 @@ using LetsCreatePokemon.Screens;
 using LetsCreatePokemon.Screens.ScreenTransitionEffects;
 using LetsCreatePokemon.Services.Content;
 using LetsCreatePokemon.Services.Screens;
+using LetsCreatePokemon.Services.World;
 using LetsCreatePokemon.World;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -36,7 +37,7 @@ namespace LetsCreatePokemon
             contentLoader = new ContentLoader(Content);
             screenLoader = new ScreenLoader(new ScreenTransitionEffectFadeOut(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, 5),
                 new ScreenTransitionEffectFadeIn(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, 3), contentLoader);
-            screenLoader.LoadScreen(new ScreenWorld(screenLoader));
+            screenLoader.LoadScreen(new ScreenWorld(screenLoader, new TileTestLoader(), new EntityTestLoader()));
         }
 
         /// <summary>

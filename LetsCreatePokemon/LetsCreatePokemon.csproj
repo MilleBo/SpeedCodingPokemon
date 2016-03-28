@@ -110,6 +110,9 @@
     <Compile Include="Inputs\Input.cs" />
     <Compile Include="Inputs\InputKeyboard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\World\EntityTestLoader.cs" />
+    <Compile Include="Services\World\IEntityLoader.cs" />
+    <Compile Include="Services\World\ITileLoader.cs" />
     <Compile Include="Screens\Screen.cs" />
     <Compile Include="Screens\ScreenTransitionEffects\IScreenTransitionEffect.cs" />
     <Compile Include="Screens\ScreenTransitionEffects\ScreenTransitionEffectFade.cs" />
@@ -121,6 +124,7 @@
     <Compile Include="Services\Screens\IScreenLoader.cs" />
     <Compile Include="Services\Screens\ScreenLoader.cs" />
     <Compile Include="Services\UtilityService.cs" />
+    <Compile Include="Services\World\TileTestLoader.cs" />
     <Compile Include="World\Component.cs" />
     <Compile Include="World\Components\Animations\Animation.cs" />
     <Compile Include="World\Components\Animations\AnimationWalking.cs" />
@@ -130,7 +134,7 @@
     <Compile Include="World\Components\Sprite.cs" />
     <Compile Include="World\Entity.cs" />
     <Compile Include="World\IComponentOwner.cs" />
-    <Compile Include="World\Tiles\Test\TileGenerator.cs" />
+    <Compile Include="World\IWorldObject.cs" />
     <Compile Include="World\Tiles\Tile.cs" />
     <Compile Include="World\Tiles\TileFrame.cs" />
     <Compile Include="World\Tiles\TileGraphic.cs" />

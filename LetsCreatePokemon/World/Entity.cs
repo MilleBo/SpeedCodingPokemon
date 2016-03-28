@@ -5,10 +5,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LetsCreatePokemon.World
 {
-    internal class Entity : IComponentOwner
+    internal class Entity : IComponentOwner, IWorldObject
     {
         private readonly IList<Component> components;
         public string Id { get; }
+        public int ZTilePosition => 2;
 
         public Entity(string id)
         {

@@ -1,26 +1,27 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using LetsCreatePokemon.World.Tiles;
 
-namespace LetsCreatePokemon.World.Tiles.Test
+namespace LetsCreatePokemon.Services.World
 {
-    /// <summary>
-    /// Tile generator for test!
-    /// </summary>
-    public static class TileGenerator
+    internal class TileTestLoader : ITileLoader
     {
-        private static Random rnd = new Random();
+        private readonly Random rnd;
 
-        public static List<TileGraphic> GenerateTiles()
+        public TileTestLoader()
+        {
+            rnd = new Random();
+        }
+
+        public IList<TileGraphic> LoadGraphicTiles(string mapName)
         {
             var list = new List<TileGraphic>();
             list.AddRange(GenerateGrass());
             list.AddRange(GenerateBushes());
-            return list; 
+            return list;
         }
-        private static IEnumerable<TileGraphic> GenerateGrass()
+
+        private IEnumerable<TileGraphic> GenerateGrass()
         {
             var list = new List<TileGraphic>();
             for (int x = 0; x < 30; x++)
@@ -45,11 +46,10 @@ namespace LetsCreatePokemon.World.Tiles.Test
                     });
                 }
             }
-            return list; 
+            return list;
         }
 
-
-        private static IEnumerable<TileGraphic> GenerateBushes()
+        private IEnumerable<TileGraphic> GenerateBushes()
         {
             var list = new List<TileGraphic>();
             for (int x = 0; x < 30; x++)

@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LetsCreatePokemon.World.Tiles
 {
-    public class TileGraphic : Tile
+    public class TileGraphic : Tile, IWorldObject
     {
         private const int TextureWidth = 16;
         private const int TextureHeight = 16;
