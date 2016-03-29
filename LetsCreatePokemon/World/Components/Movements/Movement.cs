@@ -24,29 +24,37 @@ namespace LetsCreatePokemon.World.Components.Movements
         protected void Move(Directions direction)
         {
             var sprite = Owner.GetComponent<Sprite>();
-            var x = sprite.TilePosition.X*Tile.Width;
-            var y = sprite.TilePosition.Y*Tile.Height;
+            var wantedXTilePosition = (int)sprite.TilePosition.X;
+            var wantedYTilePostion = (int)sprite.TilePosition.Y;
             switch (direction)
             {
                 case Directions.Left:
-                    wantedPosition = new Vector2(x - Tile.Width,y);
+                    wantedXTilePosition--;
                     break;
                 case Directions.Up:
-                    wantedPosition = new Vector2(x,y - Tile.Height);
+                    wantedYTilePostion--;
                     break;
                 case Directions.Right:
-                    wantedPosition = new Vector2(x + Tile.Width, y);
+                    wantedXTilePosition++; 
                     break;
                 case Directions.Down:
-                    wantedPosition = new Vector2(x,y + Tile.Height);
+                    wantedYTilePostion++;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
             }
+            if (Collision(wantedXTilePosition, wantedYTilePostion))
+                return; 
+            wantedPosition = new Vector2(wantedXTilePosition*Tile.Width, wantedYTilePostion*Tile.Height);
             InMovement = true;
             animationWalking.ChangeDirection(direction);
-            var animation = Owner.GetComponent<Animation>(); 
-            animation.PlayAnimation(animationWalking);
+            Owner.GetComponent<Animation>().PlayAnimation(animationWalking);
+        }
+
+        private bool Collision(int wantedXTilePosition, int wantedYTilePostion)
+        {
+            var collision = Owner.GetComponent<Collision>();
+            return collision != null && collision.CollideOnTile(wantedXTilePosition, wantedYTilePostion);
         }
 
         public override void Update(double gameTime)

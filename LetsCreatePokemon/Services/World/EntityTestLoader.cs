@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using LetsCreatePokemon.Data;
 using LetsCreatePokemon.Inputs;
 using LetsCreatePokemon.World;
@@ -11,7 +12,7 @@ namespace LetsCreatePokemon.Services.World
 {
     internal class EntityTestLoader : IEntityLoader
     {
-        public IList<Entity> LoadEntities(string mapName)
+        public IList<Entity> LoadEntities(string mapName, IList<ICollisionObject> collisionObjects)
         {
             var entity = new Entity("MyFirstEntity");
             entity.AddComponent(new Sprite(entity, new SpriteData
@@ -25,6 +26,7 @@ namespace LetsCreatePokemon.Services.World
             }, new Rectangle(0, 0, 16, 19)));
             entity.AddComponent(new MovementPlayer(entity, 1, new InputKeyboard()));
             entity.AddComponent(new Animation(entity));
+            entity.AddComponent(new Collision(entity, new ReadOnlyCollection<ICollisionObject>(collisionObjects)));
             return new List<Entity> {entity};
         }
     }

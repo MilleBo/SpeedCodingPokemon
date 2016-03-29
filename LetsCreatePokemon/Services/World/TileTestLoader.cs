@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using LetsCreatePokemon.World;
 using LetsCreatePokemon.World.Tiles;
 
 namespace LetsCreatePokemon.Services.World
@@ -7,10 +8,12 @@ namespace LetsCreatePokemon.Services.World
     internal class TileTestLoader : ITileLoader
     {
         private readonly Random rnd;
+        private readonly List<ICollisionObject> collisionObjects;  
 
         public TileTestLoader()
         {
             rnd = new Random();
+            collisionObjects = new List<ICollisionObject>();
         }
 
         public IList<TileGraphic> LoadGraphicTiles(string mapName)
@@ -19,6 +22,11 @@ namespace LetsCreatePokemon.Services.World
             list.AddRange(GenerateGrass());
             list.AddRange(GenerateBushes());
             return list;
+        }
+
+        public IList<ICollisionObject> LoadCollisionTiles(string mapName)
+        {
+            return collisionObjects;
         }
 
         private IEnumerable<TileGraphic> GenerateGrass()
@@ -59,6 +67,7 @@ namespace LetsCreatePokemon.Services.World
                     var chance = rnd.Next(0, 100);
                     if (chance < 80)
                         continue;
+                    collisionObjects.Add(new TileCollision {XTilePosition = x, YTilePosition = y}); 
                     var type = rnd.Next(0, 3);
                     if (type == 0)
                     {

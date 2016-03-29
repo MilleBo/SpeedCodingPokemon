@@ -26,7 +26,7 @@ namespace LetsCreatePokemon.Screens
         {
             worldObjects = new List<IWorldObject>();
             worldObjects.AddRange(tileLoader.LoadGraphicTiles(""));
-            worldObjects.AddRange(entityLoader.LoadEntities(""));
+            worldObjects.AddRange(entityLoader.LoadEntities("", tileLoader.LoadCollisionTiles("")));
             foreach (var worldObject in worldObjects)
             {
                 worldObject.LoadContent(contentLoader);
