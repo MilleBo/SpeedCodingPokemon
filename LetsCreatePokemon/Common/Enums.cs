@@ -12,7 +12,8 @@ namespace LetsCreatePokemon.Common
         Up,
         Right,
         Down,
-        None
+        None,
+        A
     }
 
     public enum Directions

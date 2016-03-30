@@ -11,6 +11,7 @@ namespace LetsCreatePokemon.Inputs
 {
     internal abstract class Input
     {
+        public static bool LockInput { get; set; }
         private event EventHandler<NewInputEventArgs> newInput; 
         private double counter;
         private double cooldown; 
@@ -29,6 +30,8 @@ namespace LetsCreatePokemon.Inputs
 
         public void Update(double gameTime)
         {
+            if (LockInput)
+                return; 
             if (cooldown > 0)
             {
                 counter += gameTime;

@@ -5,6 +5,6 @@ namespace LetsCreatePokemon.Services.World
 {
     internal interface IEntityLoader
     {
-        IList<Entity> LoadEntities(string mapName, IList<ICollisionObject> collisionObjects);
+        IList<Entity> LoadEntities(string mapName, IList<ICollisionObject> collisionObjects, IEventRunner eventRunner);
     }
 }

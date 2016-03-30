@@ -111,7 +111,9 @@
     <Compile Include="Inputs\InputKeyboard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\World\EntityTestLoader.cs" />
+    <Compile Include="Services\World\EventRunner.cs" />
     <Compile Include="Services\World\IEntityLoader.cs" />
+    <Compile Include="Services\World\IEventRunner.cs" />
     <Compile Include="Services\World\ITileLoader.cs" />
     <Compile Include="Screens\Screen.cs" />
     <Compile Include="Screens\ScreenTransitionEffects\IScreenTransitionEffect.cs" />
@@ -130,10 +132,13 @@
     <Compile Include="World\Components\Animations\AnimationWalking.cs" />
     <Compile Include="World\Components\Animations\IAnimation.cs" />
     <Compile Include="World\Components\Collision.cs" />
+    <Compile Include="World\Components\ComponentTest.cs" />
     <Compile Include="World\Components\Movements\Movement.cs" />
     <Compile Include="World\Components\Movements\MovementPlayer.cs" />
     <Compile Include="World\Components\Sprite.cs" />
     <Compile Include="World\Entity.cs" />
+    <Compile Include="World\Events\EventTest.cs" />
+    <Compile Include="World\Events\IEvent.cs" />
     <Compile Include="World\ICollisionObject.cs" />
     <Compile Include="World\IComponentOwner.cs" />
     <Compile Include="World\IWorldObject.cs" />
@@ -160,6 +165,9 @@
     </Content>
     <Content Include="Content\Textures\Tiles\main_tile.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\pi_test.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="project.json" />
   </ItemGroup>
