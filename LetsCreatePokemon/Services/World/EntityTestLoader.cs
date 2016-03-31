@@ -14,7 +14,9 @@ namespace LetsCreatePokemon.Services.World
     {
         public IList<Entity> LoadEntities(string mapName, IList<ICollisionObject> collisionObjects, IEventRunner eventRunner)
         {
-            var entity = new Entity("MyFirstEntity");
+            var entityList = new List<Entity>();
+            var readonlyEntityList = new ReadOnlyCollection<Entity>(entityList);
+            var entity = new Entity("player");
             entity.AddComponent(new Sprite(entity, new SpriteData
             {
                 Color = Color.White,
@@ -27,8 +29,9 @@ namespace LetsCreatePokemon.Services.World
             entity.AddComponent(new MovementPlayer(entity, 1, new InputKeyboard()));
             entity.AddComponent(new Animation(entity));
             entity.AddComponent(new Collision(entity, new ReadOnlyCollection<ICollisionObject>(collisionObjects)));
-            entity.AddComponent(new ComponentTest(entity, eventRunner, new InputKeyboard()));
-            return new List<Entity> {entity};
+            entity.AddComponent(new ComponentTest(entity, eventRunner, new InputKeyboard(), readonlyEntityList));
+            entityList.Add(entity);
+            return entityList;
         }
     }
 }

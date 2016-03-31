@@ -26,6 +26,7 @@ namespace LetsCreatePokemon.Services.World
             {
                 currentEvent.LoadContent(contentLoader);
             }
+            currentEvents[currentIndex].Initialize();
             Input.LockInput = true; 
         }
 
@@ -42,6 +43,11 @@ namespace LetsCreatePokemon.Services.World
                     currentEvents = null;
                     Input.LockInput = false;
                 }
+                else
+                {
+                    currentEvents[currentIndex].Initialize();
+                }
+
             }
         }
 

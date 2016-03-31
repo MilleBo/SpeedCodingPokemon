@@ -129,6 +129,7 @@
     <Compile Include="Services\World\TileTestLoader.cs" />
     <Compile Include="World\Component.cs" />
     <Compile Include="World\Components\Animations\Animation.cs" />
+    <Compile Include="World\Components\Animations\AnimationEmotion.cs" />
     <Compile Include="World\Components\Animations\AnimationWalking.cs" />
     <Compile Include="World\Components\Animations\IAnimation.cs" />
     <Compile Include="World\Components\Collision.cs" />
@@ -136,7 +137,10 @@
     <Compile Include="World\Components\Movements\Movement.cs" />
     <Compile Include="World\Components\Movements\MovementPlayer.cs" />
     <Compile Include="World\Components\Sprite.cs" />
+    <Compile Include="World\Emotions\EmotionTrainer.cs" />
+    <Compile Include="World\Emotions\IEmotion.cs" />
     <Compile Include="World\Entity.cs" />
+    <Compile Include="World\Events\EventEmotion.cs" />
     <Compile Include="World\Events\EventTest.cs" />
     <Compile Include="World\Events\IEvent.cs" />
     <Compile Include="World\ICollisionObject.cs" />
@@ -167,6 +171,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\pi_test.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Emotions\trainer_b.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="project.json" />

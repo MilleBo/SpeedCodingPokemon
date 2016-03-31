@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using LetsCreatePokemon.EventArg;
 using LetsCreatePokemon.Inputs;
 using LetsCreatePokemon.Services.World;
+using LetsCreatePokemon.World.Emotions;
 using LetsCreatePokemon.World.Events;
 
 namespace LetsCreatePokemon.World.Components
@@ -14,11 +15,13 @@ namespace LetsCreatePokemon.World.Components
     {
         private readonly IEventRunner eventRunner;
         private readonly Input input;
+        private readonly IReadOnlyList<Entity> entities;
 
-        public ComponentTest(IComponentOwner owner, IEventRunner eventRunner, Input input) : base(owner)
+        public ComponentTest(IComponentOwner owner, IEventRunner eventRunner, Input input, IReadOnlyList<Entity> entities) : base(owner)
         {
             this.eventRunner = eventRunner;
             this.input = input;
+            this.entities = entities;
             input.NewInput += InputOnNewInput;
         }
 
@@ -26,7 +29,7 @@ namespace LetsCreatePokemon.World.Components
         {
             if (newInputEventArgs.Inputs == Common.Inputs.A)
             {
-                eventRunner.RunEvents(new List<IEvent>() { new EventTest()});
+                eventRunner.RunEvents(new List<IEvent> { new EventEmotion("player", entities, new EmotionTrainer())});
             }
         }
 
