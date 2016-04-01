@@ -30,7 +30,6 @@ namespace LetsCreatePokemon.Services.World
             entity.AddComponent(new Animation(entity));
             entity.AddComponent(new Collision(entity, new ReadOnlyCollection<ICollisionObject>(collisionObjects)));
             entity.AddComponent(new ComponentTest(entity, eventRunner, new InputKeyboard(), readonlyEntityList));
-            entity.AddComponent(new Animation(entity, new AnimationSpinning(16, 20, 400)));
             //NPC
             var entityNpc = new Entity("npc");
             entityNpc.AddComponent(new Sprite(entityNpc, new SpriteData
@@ -42,7 +41,7 @@ namespace LetsCreatePokemon.Services.World
                 XTilePosition = 4,
                 YTilePosition = 4
             }, new Rectangle(0, 0, 16, 19)));
-            entityNpc.AddComponent(new Animation(entityNpc, new AnimationSpinning(16, 20, 1)));
+            entityNpc.AddComponent(new Animation(entityNpc, new AnimationSpinning(16, 20, 400)));
             entityList.Add(entityNpc);
             entityList.Add(entity);
             return entityList;
