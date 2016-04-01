@@ -10,14 +10,13 @@ namespace LetsCreatePokemon.World.Components.Animations
 {
     internal class AnimationWalking : IAnimation
     {
-        private readonly Dictionary<Directions, int> animationPosition;
         private readonly int width;
         private readonly int height;
         private readonly int animationFramesCount;
         private int animationIndex;
         private Directions direction;  
 
-        public int AnimationSpeed { get; set; }
+        public int AnimationCooldown { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:System.Object"/> class.
@@ -28,14 +27,7 @@ namespace LetsCreatePokemon.World.Components.Animations
             this.height = height;
             this.animationFramesCount = animationFramesCount;
             this.direction = direction;
-            AnimationSpeed = 200;
-            animationPosition = new Dictionary<Directions, int>
-            {
-                [Directions.Down] = 0,
-                [Directions.Up] = 1,
-                [Directions.Left] = 2,
-                [Directions.Right] = 3,
-            };
+            AnimationCooldown = 200;
         }
 
         public Rectangle GetNewAnimationState()
@@ -45,7 +37,7 @@ namespace LetsCreatePokemon.World.Components.Animations
             {
                 animationIndex = 0; 
             }
-            return new Rectangle(width*animationIndex, height*animationPosition[direction], width, height);
+            return new Rectangle(width*animationIndex, height*(int)direction, width, height);
         }
 
         public void ChangeDirection(Directions newDirection)

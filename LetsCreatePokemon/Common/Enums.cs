@@ -18,9 +18,9 @@ namespace LetsCreatePokemon.Common
 
     public enum Directions
     {
-        Left, 
-        Up, 
-        Right,
-        Down
+        Left = 2, 
+        Up = 1, 
+        Right = 3,
+        Down = 0
     }
 }

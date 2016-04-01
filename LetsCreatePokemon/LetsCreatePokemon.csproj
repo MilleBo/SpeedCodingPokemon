@@ -130,6 +130,7 @@
     <Compile Include="World\Component.cs" />
     <Compile Include="World\Components\Animations\Animation.cs" />
     <Compile Include="World\Components\Animations\AnimationEmotion.cs" />
+    <Compile Include="World\Components\Animations\AnimationSpinning.cs" />
     <Compile Include="World\Components\Animations\AnimationWalking.cs" />
     <Compile Include="World\Components\Animations\IAnimation.cs" />
     <Compile Include="World\Components\Collision.cs" />
@@ -174,6 +175,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Emotions\trainer_b.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\NPC\rock_trainer.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="project.json" />

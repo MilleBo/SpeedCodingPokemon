@@ -7,11 +7,11 @@ namespace LetsCreatePokemon.World.Components.Animations
         private const int Width = 16;
         private const int Height = 16;
         private int animationindex; 
-        public int AnimationSpeed { get; set; }
+        public int AnimationCooldown { get; set; }
 
         public AnimationEmotion()
         {
-            AnimationSpeed = 25; 
+            AnimationCooldown = 25; 
             animationindex = 0; 
         }
 

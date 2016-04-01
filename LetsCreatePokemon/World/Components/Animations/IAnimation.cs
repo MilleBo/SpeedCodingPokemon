@@ -4,7 +4,7 @@ namespace LetsCreatePokemon.World.Components.Animations
 {
     internal interface IAnimation
     {
-        int AnimationSpeed { get; set; }
+        int AnimationCooldown { get; set; }
         Rectangle GetNewAnimationState();
     }
 }

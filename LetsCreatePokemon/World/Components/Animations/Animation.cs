@@ -10,12 +10,17 @@
             counter = 0; 
         }
 
+        public Animation(IComponentOwner owner, IAnimation animation) : this(owner)
+        {
+            currentAnimation = animation;
+        }
+
         public override void Update(double gameTime)
         {
             if (currentAnimation == null)
                 return;
             counter += gameTime;
-            if (counter > currentAnimation.AnimationSpeed)
+            if (counter > currentAnimation.AnimationCooldown)
             {
                 var drawFrame = currentAnimation.GetNewAnimationState();
                 var sprite = Owner.GetComponent<Sprite>();
