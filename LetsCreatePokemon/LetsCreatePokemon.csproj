@@ -126,6 +126,7 @@
     <Compile Include="Services\Screens\IScreenLoader.cs" />
     <Compile Include="Services\Screens\ScreenLoader.cs" />
     <Compile Include="Services\UtilityService.cs" />
+    <Compile Include="Services\World\IWorldData.cs" />
     <Compile Include="Services\World\TileTestLoader.cs" />
     <Compile Include="World\Component.cs" />
     <Compile Include="World\Components\Animations\Animation.cs" />
@@ -140,17 +141,20 @@
     <Compile Include="World\Components\Sprite.cs" />
     <Compile Include="World\Emotions\EmotionTrainer.cs" />
     <Compile Include="World\Emotions\IEmotion.cs" />
-    <Compile Include="World\Entity.cs" />
+    <Compile Include="World\WorldObject.cs" />
     <Compile Include="World\Events\EventEmotion.cs" />
     <Compile Include="World\Events\EventTest.cs" />
     <Compile Include="World\Events\IEvent.cs" />
-    <Compile Include="World\ICollisionObject.cs" />
+    <Compile Include="World\ICollisionComponent.cs" />
+    <Compile Include="World\IComponent.cs" />
+    <Compile Include="World\IDrawComponent.cs" />
+    <Compile Include="World\ILoadContentComponent.cs" />
     <Compile Include="World\IComponentOwner.cs" />
-    <Compile Include="World\IWorldObject.cs" />
-    <Compile Include="World\Tiles\Tile.cs" />
-    <Compile Include="World\Tiles\TileCollision.cs" />
-    <Compile Include="World\Tiles\TileFrame.cs" />
-    <Compile Include="World\Tiles\TileGraphic.cs" />
+    <Compile Include="World\IUpdateComponent.cs" />
+    <Compile Include="World\Components\Tiles\Tile.cs" />
+    <Compile Include="World\Components\Tiles\TileCollision.cs" />
+    <Compile Include="World\Components\Tiles\TileFrame.cs" />
+    <Compile Include="World\Components\Tiles\TileGraphic.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Textures\NPC\main_character_single.xnb">

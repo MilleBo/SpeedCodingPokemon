@@ -1,12 +1,12 @@
 ﻿using LetsCreatePokemon.Data;
 using LetsCreatePokemon.Services.Content;
-using LetsCreatePokemon.World.Tiles;
+using LetsCreatePokemon.World.Components.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace LetsCreatePokemon.World.Components
 {
-    internal class Sprite : Component
+    internal class Sprite : Component, ILoadContentComponent, IDrawComponent
     {
         private readonly SpriteData spriteData;
         private Texture2D texture;
@@ -27,15 +27,9 @@ namespace LetsCreatePokemon.World.Components
             DrawFrame = drawFrame;
         }
 
-        public override void LoadContent(IContentLoader contentLoader)
+        public void LoadContent(IContentLoader contentLoader)
         {
             texture = contentLoader.LoadTexture(spriteData.TextureName);
-            base.LoadContent(contentLoader);
-        }
-
-        public override void Update(double gameTime)
-        {  
-
         }
 
         public void IncreasePositionOffset(float x, float y)
@@ -54,7 +48,7 @@ namespace LetsCreatePokemon.World.Components
             spriteData.YTilePosition = y;
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, new Rectangle((int)CurrentPosition.X, (int)CurrentPosition.Y, spriteData.Width, spriteData.Height), DrawFrame, spriteData.Color);
         }

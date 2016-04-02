@@ -1,42 +1,36 @@
 using System;
 using System.Collections.Generic;
 using LetsCreatePokemon.World;
-using LetsCreatePokemon.World.Tiles;
+using LetsCreatePokemon.World.Components.Tiles;
 
 namespace LetsCreatePokemon.Services.World
 {
     internal class TileTestLoader : ITileLoader
     {
         private readonly Random rnd;
-        private readonly List<ICollisionObject> collisionObjects;  
 
         public TileTestLoader()
         {
             rnd = new Random();
-            collisionObjects = new List<ICollisionObject>();
         }
 
-        public IList<TileGraphic> LoadGraphicTiles(string mapName)
+        public IList<WorldObject> LoadTiles(string mapName)
         {
-            var list = new List<TileGraphic>();
+            var list = new List<WorldObject>();
             list.AddRange(GenerateGrass());
             list.AddRange(GenerateBushes());
             return list;
         }
 
-        public IList<ICollisionObject> LoadCollisionTiles(string mapName)
+        private IEnumerable<WorldObject> GenerateGrass()
         {
-            return collisionObjects;
-        }
-
-        private IEnumerable<TileGraphic> GenerateGrass()
-        {
-            var list = new List<TileGraphic>();
+            var list = new List<WorldObject>();
             for (int x = 0; x < 30; x++)
             {
                 for (int y = 0; y < 20; y++)
                 {
-                    list.Add(new TileGraphic
+                    var worldObject = new WorldObject($"tile_0_{x}_{y}");
+                    worldObject.AddComponent(new TileGraphic(worldObject, x, y)
                     {
                         AnimationSpeed = 1000,
                         TextureName = "Tiles/main_tile",
@@ -48,18 +42,17 @@ namespace LetsCreatePokemon.Services.World
                                 TextureYPosition = 0
                             }
                         },
-                        XTilePosition = x,
-                        YTilePosition = y,
                         ZTilePosition = 0
                     });
+                    list.Add(worldObject);
                 }
             }
             return list;
         }
 
-        private IEnumerable<TileGraphic> GenerateBushes()
+        private IEnumerable<WorldObject> GenerateBushes()
         {
-            var list = new List<TileGraphic>();
+            var list = new List<WorldObject>();
             for (int x = 0; x < 30; x++)
             {
                 for (int y = 0; y < 20; y++)
@@ -67,11 +60,14 @@ namespace LetsCreatePokemon.Services.World
                     var chance = rnd.Next(0, 100);
                     if (chance < 80)
                         continue;
-                    collisionObjects.Add(new TileCollision {XTilePosition = x, YTilePosition = y}); 
+                    var collisionObject = new WorldObject($"tile_collision_{x}_{y}");
+                    collisionObject.AddComponent(new TileCollision(collisionObject, x, y));
+                    list.Add(collisionObject);
                     var type = rnd.Next(0, 3);
+                    var worldObject = new WorldObject($"tile_1_{x}_{y}");
                     if (type == 0)
                     {
-                        list.Add(new TileGraphic
+                        worldObject.AddComponent(new TileGraphic(worldObject, x, y)
                         {
                             AnimationSpeed = 200,
                             TextureName = "Tiles/main_tile",
@@ -99,14 +95,12 @@ namespace LetsCreatePokemon.Services.World
                             }
 
                         },
-                            XTilePosition = x,
-                            YTilePosition = y,
                             ZTilePosition = 0
                         });
                     }
                     if (type == 1)
                     {
-                        list.Add(new TileGraphic
+                        worldObject.AddComponent(new TileGraphic(worldObject, x, y)
                         {
                             AnimationSpeed = 1000,
                             TextureName = "Tiles/main_tile",
@@ -118,14 +112,12 @@ namespace LetsCreatePokemon.Services.World
                                 TextureYPosition = 32
                             }
                         },
-                            XTilePosition = x,
-                            YTilePosition = y,
                             ZTilePosition = 0
                         });
                     }
                     if (type == 2)
                     {
-                        list.Add(new TileGraphic
+                        worldObject.AddComponent(new TileGraphic(worldObject, x, y)
                         {
                             AnimationSpeed = 1000,
                             TextureName = "Tiles/main_tile",
@@ -137,11 +129,10 @@ namespace LetsCreatePokemon.Services.World
                                 TextureYPosition = 32
                             }
                         },
-                            XTilePosition = x,
-                            YTilePosition = y,
                             ZTilePosition = 0
                         });
                     }
+                    list.Add(worldObject);
                 }
             }
             return list;

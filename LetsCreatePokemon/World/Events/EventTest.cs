@@ -1,4 +1,5 @@
 ﻿using LetsCreatePokemon.Services.Content;
+using LetsCreatePokemon.Services.World;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -11,7 +12,7 @@ namespace LetsCreatePokemon.World.Events
 
         public bool IsDone { get; private set; }
 
-        public void Initialize()
+        public void Initialize(IWorldData worldData)
         {
             position = new Vector2(-100, 40);
         }

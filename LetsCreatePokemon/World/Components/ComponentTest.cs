@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using LetsCreatePokemon.EventArg;
 using LetsCreatePokemon.Inputs;
 using LetsCreatePokemon.Services.World;
@@ -11,17 +7,15 @@ using LetsCreatePokemon.World.Events;
 
 namespace LetsCreatePokemon.World.Components
 {
-    internal class ComponentTest : Component
+    internal class ComponentTest : Component, IUpdateComponent
     {
         private readonly IEventRunner eventRunner;
         private readonly Input input;
-        private readonly IReadOnlyList<Entity> entities;
 
-        public ComponentTest(IComponentOwner owner, IEventRunner eventRunner, Input input, IReadOnlyList<Entity> entities) : base(owner)
+        public ComponentTest(IComponentOwner owner, IEventRunner eventRunner, Input input) : base(owner)
         {
             this.eventRunner = eventRunner;
             this.input = input;
-            this.entities = entities;
             input.NewInput += InputOnNewInput;
         }
 
@@ -29,11 +23,11 @@ namespace LetsCreatePokemon.World.Components
         {
             if (newInputEventArgs.Inputs == Common.Inputs.A)
             {
-                eventRunner.RunEvents(new List<IEvent> { new EventEmotion("player", entities, new EmotionTrainer())});
+                eventRunner.RunEvents(new List<IEvent> { new EventEmotion("player", new EmotionTrainer())});
             }
         }
 
-        public override void Update(double gameTime)
+        public void Update(double gameTime)
         {
             input.Update(gameTime);
         }

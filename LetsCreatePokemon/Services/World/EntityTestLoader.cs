@@ -12,11 +12,10 @@ namespace LetsCreatePokemon.Services.World
 {
     internal class EntityTestLoader : IEntityLoader
     {
-        public IList<Entity> LoadEntities(string mapName, IList<ICollisionObject> collisionObjects, IEventRunner eventRunner)
+        public IList<WorldObject> LoadEntities(string mapName, IWorldData worldData, IEventRunner eventRunner)
         {
-            var entityList = new List<Entity>();
-            var readonlyEntityList = new ReadOnlyCollection<Entity>(entityList);
-            var entity = new Entity("player");
+            var entityList = new List<WorldObject>();
+            var entity = new WorldObject("player");
             entity.AddComponent(new Sprite(entity, new SpriteData
             {
                 Color = Color.White,
@@ -28,10 +27,10 @@ namespace LetsCreatePokemon.Services.World
             }, new Rectangle(0, 0, 16, 19)));
             entity.AddComponent(new MovementPlayer(entity, 1, new InputKeyboard()));
             entity.AddComponent(new Animation(entity));
-            entity.AddComponent(new Collision(entity, new ReadOnlyCollection<ICollisionObject>(collisionObjects)));
-            entity.AddComponent(new ComponentTest(entity, eventRunner, new InputKeyboard(), readonlyEntityList));
+            entity.AddComponent(new Collision(entity, worldData));
+            entity.AddComponent(new ComponentTest(entity, eventRunner, new InputKeyboard()));
             //NPC
-            var entityNpc = new Entity("npc");
+            var entityNpc = new WorldObject("npc");
             entityNpc.AddComponent(new Sprite(entityNpc, new SpriteData
             {
                 Color = Color.White,

@@ -24,7 +24,7 @@ namespace LetsCreatePokemon
         RenderTarget2D backBuffer;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Entity entity;
+        WorldObject entity;
         IContentLoader contentLoader;
         ScreenLoader screenLoader;
 

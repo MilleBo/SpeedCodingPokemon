@@ -2,12 +2,12 @@
 using LetsCreatePokemon.Common;
 using LetsCreatePokemon.Services;
 using LetsCreatePokemon.World.Components.Animations;
-using LetsCreatePokemon.World.Tiles;
+using LetsCreatePokemon.World.Components.Tiles;
 using Microsoft.Xna.Framework;
 
 namespace LetsCreatePokemon.World.Components.Movements
 {
-    internal abstract class Movement : Component
+    internal abstract class Movement : Component, IUpdateComponent
     {
         private readonly float speed;
         protected Vector2 wantedPosition;
@@ -54,10 +54,10 @@ namespace LetsCreatePokemon.World.Components.Movements
         private bool Collision(int wantedXTilePosition, int wantedYTilePostion)
         {
             var collision = Owner.GetComponent<Collision>();
-            return collision != null && collision.CollideOnTile(wantedXTilePosition, wantedYTilePostion);
+            return collision != null && collision.CheckCollision(wantedXTilePosition, wantedYTilePostion);
         }
 
-        public override void Update(double gameTime)
+        public virtual void Update(double gameTime)
         {
             if (!InMovement)
                 return;

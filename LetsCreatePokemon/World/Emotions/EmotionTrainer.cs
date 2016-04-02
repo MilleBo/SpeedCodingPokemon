@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LetsCreatePokemon.Data;
+﻿using LetsCreatePokemon.Data;
 using LetsCreatePokemon.Services.Content;
 using LetsCreatePokemon.World.Components;
 using LetsCreatePokemon.World.Components.Animations;
@@ -15,22 +10,22 @@ namespace LetsCreatePokemon.World.Emotions
     internal class EmotionTrainer : IEmotion
     {
         private const int EmotionTime = 1000;
-        private readonly Entity entity;
+        private readonly WorldObject worldObject;
         private double counter;
         private float extraY; 
         public bool IsDone { get; private set; }
 
         public EmotionTrainer()
         {
-            entity = new Entity("emotion");
-            entity.AddComponent(new Sprite(entity, new SpriteData
+            worldObject = new WorldObject("emotion");
+            worldObject.AddComponent(new Sprite(worldObject, new SpriteData
             {
                 Color = Color.White,
                 Height = 16,
                 Width = 16,
                 TextureName = "Emotions/trainer_b"
             }));
-            entity.AddComponent(new Animation(entity));
+            worldObject.AddComponent(new Animation(worldObject));
         }
 
         public void PlayEmotion(int xTilePosition, int yTilePosition)
@@ -38,18 +33,18 @@ namespace LetsCreatePokemon.World.Emotions
             IsDone = false;
             counter = 0;
             extraY = -5;
-            entity.GetComponent<Sprite>().UpdateTilePosition(xTilePosition, yTilePosition);
-            entity.GetComponent<Animation>().PlayAnimation(new AnimationEmotion());
+            worldObject.GetComponent<Sprite>().UpdateTilePosition(xTilePosition, yTilePosition);
+            worldObject.GetComponent<Animation>().PlayAnimation(new AnimationEmotion());
         }
 
         public void LoadContent(IContentLoader contentLoader)
         {
-            entity.LoadContent(contentLoader);
+            worldObject.GetComponents<ILoadContentComponent>().ForEach(c => c.LoadContent(contentLoader));
         }
 
         public void Update(double gameTime)
         {
-            entity.Update(gameTime);
+            worldObject.GetComponents<IUpdateComponent>().ForEach(c => c.Update(gameTime));
             counter += gameTime;
             if (counter > EmotionTime)
             {
@@ -58,14 +53,14 @@ namespace LetsCreatePokemon.World.Emotions
             //For the extra bounce
             if (extraY < 6)
             {
-                entity.GetComponent<Sprite>().IncreasePositionOffset(0, extraY);
+                worldObject.GetComponent<Sprite>().IncreasePositionOffset(0, extraY);
                 extraY++; 
             }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            entity.Draw(spriteBatch);
+            worldObject.GetComponents<IDrawComponent>().ForEach(c => c.Draw(spriteBatch));
         }
     }
 }

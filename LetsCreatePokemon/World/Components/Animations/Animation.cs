@@ -1,6 +1,6 @@
 ﻿namespace LetsCreatePokemon.World.Components.Animations
 {
-    internal class Animation : Component
+    internal class Animation : Component, IUpdateComponent
     {
         private IAnimation currentAnimation;
         private double counter; 
@@ -15,7 +15,7 @@
             currentAnimation = animation;
         }
 
-        public override void Update(double gameTime)
+        public void Update(double gameTime)
         {
             if (currentAnimation == null)
                 return;

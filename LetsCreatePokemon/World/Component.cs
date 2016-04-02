@@ -1,9 +1,6 @@
-﻿using LetsCreatePokemon.Services.Content;
-using Microsoft.Xna.Framework.Graphics;
-
-namespace LetsCreatePokemon.World
+﻿namespace LetsCreatePokemon.World
 {
-    internal abstract class Component
+    internal abstract class Component : IComponent
     {
         protected IComponentOwner Owner;
         public bool Killed { get; protected set; }
@@ -12,9 +9,5 @@ namespace LetsCreatePokemon.World
         {
             Owner = owner; 
         }
-
-        public virtual void LoadContent(IContentLoader contentLoader) { }
-        public virtual void Update(double gameTime) { }
-        public virtual void Draw(SpriteBatch spriteBatch) { }
     }
 }

@@ -1,21 +1,30 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using LetsCreatePokemon.Services.World;
+using Microsoft.Xna.Framework;
 
 namespace LetsCreatePokemon.World.Components
 {
-    internal class Collision : Component
+    internal class Collision : Component, ICollisionComponent
     {
-        private readonly IReadOnlyList<ICollisionObject> collisionObjects;
+        private readonly IWorldData worldData;
 
-        public Collision(IComponentOwner owner, IReadOnlyList<ICollisionObject> collisionObjects) : base(owner)
+        public Collision(IComponentOwner owner, IWorldData worldData) : base(owner)
         {
-            this.collisionObjects = collisionObjects;
+            this.worldData = worldData;
         }
 
-        public bool CollideOnTile(int xTilePosition, int yTilePosition)
+        public bool CheckCollision(int xTilePosition, int yTilePosition)
         {
+            var collisionObjects = worldData.GetComponents<ICollisionComponent>();
             return collisionObjects.Any(c => c.Collide(xTilePosition, yTilePosition));
         }
 
+        public bool Collide(int xTilePosition, int yTilePosition)
+        {
+            var sprite = Owner.GetComponent<Sprite>();
+            if (sprite == null)
+                return false;
+            return sprite.TilePosition == new Vector2(xTilePosition, yTilePosition);
+        }
     }
 }

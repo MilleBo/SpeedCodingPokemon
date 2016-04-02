@@ -9,6 +9,7 @@ namespace LetsCreatePokemon.Services.World
 {
     internal class EventRunner : IEventRunner
     {
+        private IWorldData worldData;
         private int currentIndex;
         private IReadOnlyList<IEvent> currentEvents;
         private readonly IContentLoader contentLoader;
@@ -16,6 +17,11 @@ namespace LetsCreatePokemon.Services.World
         public EventRunner(IContentLoader contentLoader)
         {
             this.contentLoader = contentLoader;
+        }
+
+        public void LoadContent(IWorldData worldData)
+        {
+            this.worldData = worldData;
         }
 
         public void RunEvents(IList<IEvent> events)
@@ -26,7 +32,7 @@ namespace LetsCreatePokemon.Services.World
             {
                 currentEvent.LoadContent(contentLoader);
             }
-            currentEvents[currentIndex].Initialize();
+            currentEvents[currentIndex].Initialize(worldData);
             Input.LockInput = true; 
         }
 
@@ -45,7 +51,7 @@ namespace LetsCreatePokemon.Services.World
                 }
                 else
                 {
-                    currentEvents[currentIndex].Initialize();
+                    currentEvents[currentIndex].Initialize(worldData);
                 }
 
             }

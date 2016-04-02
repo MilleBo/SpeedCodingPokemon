@@ -1,6 +1,6 @@
 ﻿namespace LetsCreatePokemon.World
 {
-    interface ICollisionObject
+    interface ICollisionComponent : IComponent
     {
         bool Collide(int xTilePosition, int yTilePosition);
     }

@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using LetsCreatePokemon.Services.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace LetsCreatePokemon.World.Tiles
+namespace LetsCreatePokemon.World.Components.Tiles
 {
-    public class TileGraphic : Tile, IWorldObject
+    internal class TileGraphic : Tile,  ILoadContentComponent, IUpdateComponent, IDrawComponent
     {
         private const int TextureWidth = 16;
         private const int TextureHeight = 16;
@@ -22,10 +18,10 @@ namespace LetsCreatePokemon.World.Tiles
         public List<TileFrame> TileFrames { get; set; }
         public float AnimationSpeed { get; set; }
 
-        public TileGraphic()
+        public TileGraphic(IComponentOwner owner, int xTilePosition, int yTilePosition) : base(owner, xTilePosition, yTilePosition)
         {
             TileFrames = new List<TileFrame>();
-            animationIndex = 0; 
+            animationIndex = 0;
         }
 
         public void LoadContent(IContentLoader contentLoader)
