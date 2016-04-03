@@ -141,6 +141,8 @@
     <Compile Include="World\Components\Sprite.cs" />
     <Compile Include="World\Emotions\EmotionTrainer.cs" />
     <Compile Include="World\Emotions\IEmotion.cs" />
+    <Compile Include="World\EventTriggers\EventTrigger.cs" />
+    <Compile Include="World\EventTriggers\EventTriggerEyeContact.cs" />
     <Compile Include="World\WorldObject.cs" />
     <Compile Include="World\Events\EventEmotion.cs" />
     <Compile Include="World\Events\EventTest.cs" />

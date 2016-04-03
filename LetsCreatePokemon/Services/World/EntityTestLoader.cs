@@ -6,6 +6,9 @@ using LetsCreatePokemon.World;
 using LetsCreatePokemon.World.Components;
 using LetsCreatePokemon.World.Components.Animations;
 using LetsCreatePokemon.World.Components.Movements;
+using LetsCreatePokemon.World.Emotions;
+using LetsCreatePokemon.World.Events;
+using LetsCreatePokemon.World.EventTriggers;
 using Microsoft.Xna.Framework;
 
 namespace LetsCreatePokemon.Services.World
@@ -41,6 +44,8 @@ namespace LetsCreatePokemon.Services.World
                 YTilePosition = 4
             }, new Rectangle(0, 0, 16, 19)));
             entityNpc.AddComponent(new Animation(entityNpc, new AnimationSpinning(16, 20, 400)));
+            entityNpc.AddComponent(new Collision(entityNpc,worldData));
+            entityNpc.AddComponent(new EventTriggerEyeContact(entityNpc, eventRunner, new List<IEvent> { new EventEmotion("npc", new EmotionTrainer())}, worldData));
             entityList.Add(entityNpc);
             entityList.Add(entity);
             return entityList;

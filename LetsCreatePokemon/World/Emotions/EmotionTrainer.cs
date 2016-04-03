@@ -33,6 +33,7 @@ namespace LetsCreatePokemon.World.Emotions
             IsDone = false;
             counter = 0;
             extraY = -5;
+            worldObject.GetComponent<Sprite>().ResetPositionOffset();
             worldObject.GetComponent<Sprite>().UpdateTilePosition(xTilePosition, yTilePosition);
             worldObject.GetComponent<Animation>().PlayAnimation(new AnimationEmotion());
         }

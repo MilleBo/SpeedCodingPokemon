@@ -26,6 +26,8 @@ namespace LetsCreatePokemon.Services.World
 
         public void RunEvents(IList<IEvent> events)
         {
+            if (currentEvents != null)
+                return; 
             currentEvents = new ReadOnlyCollection<IEvent>(events);
             currentIndex = 0;
             foreach (var currentEvent in currentEvents)

@@ -22,6 +22,7 @@ namespace LetsCreatePokemon.World.Events
 
         public void Initialize(IWorldData worldData)
         {
+            IsDone = false; 
             var entity = worldData.GetWorldObject(entityId);
             if (entity == null)
             {
