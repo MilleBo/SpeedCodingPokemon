@@ -24,28 +24,10 @@ namespace LetsCreatePokemon.World.Components.Movements
         protected void Move(Directions direction)
         {
             var sprite = Owner.GetComponent<Sprite>();
-            var wantedXTilePosition = (int)sprite.TilePosition.X;
-            var wantedYTilePostion = (int)sprite.TilePosition.Y;
-            switch (direction)
-            {
-                case Directions.Left:
-                    wantedXTilePosition--;
-                    break;
-                case Directions.Up:
-                    wantedYTilePostion--;
-                    break;
-                case Directions.Right:
-                    wantedXTilePosition++; 
-                    break;
-                case Directions.Down:
-                    wantedYTilePostion++;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
-            }
-            if (Collision(wantedXTilePosition, wantedYTilePostion))
+            var wantedTilePosition = sprite.TilePosition + UtilityService.ConvertDirectionToVector(direction);
+            if (Collision((int)wantedTilePosition.X, (int)wantedTilePosition.Y))
                 return; 
-            wantedPosition = new Vector2(wantedXTilePosition*Tile.Width, wantedYTilePostion*Tile.Height);
+            wantedPosition = new Vector2(wantedTilePosition.X * Tile.Width, wantedTilePosition.Y * Tile.Height);
             InMovement = true;
             animationWalking.ChangeDirection(direction);
             Owner.GetComponent<Animation>().PlayAnimation(animationWalking);
