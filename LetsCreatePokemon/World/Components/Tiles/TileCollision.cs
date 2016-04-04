@@ -1,4 +1,6 @@
-﻿namespace LetsCreatePokemon.World.Components.Tiles
+﻿using Microsoft.Xna.Framework;
+
+namespace LetsCreatePokemon.World.Components.Tiles
 {
     internal class TileCollision : Tile, ICollisionComponent
     {
@@ -11,6 +13,10 @@
             return xTilePosition == XTilePosition && yTilePosition == YTilePosition;
         }
 
+        public bool Collide(Vector2 position)
+        {
+            return Collide((int)position.X, (int)position.Y);
+        }
 
     }
 }

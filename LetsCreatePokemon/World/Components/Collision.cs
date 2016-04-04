@@ -26,5 +26,10 @@ namespace LetsCreatePokemon.World.Components
                 return false;
             return sprite.TilePosition == new Vector2(xTilePosition, yTilePosition);
         }
+
+        public bool Collide(Vector2 position)
+        {
+            return Collide((int) position.X, (int) position.Y);
+        }
     }
 }

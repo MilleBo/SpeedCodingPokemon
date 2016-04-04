@@ -5,12 +5,15 @@
 // Youtube channel - https://www.speedcoding.net
 //------------------------------------------------------
 
+using System.Collections.Generic;
 using LetsCreatePokemon.Screens;
 using LetsCreatePokemon.Screens.ScreenTransitionEffects;
 using LetsCreatePokemon.Services.Content;
 using LetsCreatePokemon.Services.Screens;
 using LetsCreatePokemon.Services.World;
 using LetsCreatePokemon.World;
+using LetsCreatePokemon.World.Components.Tiles;
+using LetsCreatePokemon.World.Pathfindings;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -30,6 +33,9 @@ namespace LetsCreatePokemon
 
         public PokemonGame()
         {
+            //TEst
+            var p = new Pathfinding();
+            var path = p.FindPath(new Vector2(0, 0), new Vector2(5, 0), new List<ICollisionComponent>() { new TileCollision(null, 3, 0)});
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 240;
             graphics.PreferredBackBufferHeight = 160;
