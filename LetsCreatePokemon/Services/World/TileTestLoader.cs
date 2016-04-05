@@ -58,7 +58,7 @@ namespace LetsCreatePokemon.Services.World
                 for (int y = 0; y < 20; y++)
                 {
                     var chance = rnd.Next(0, 100);
-                    if (chance < 80)
+                    if (chance < 80 || (x == 8 && y == 8))
                         continue;
                     var collisionObject = new WorldObject($"tile_collision_{x}_{y}");
                     collisionObject.AddComponent(new TileCollision(collisionObject, x, y));

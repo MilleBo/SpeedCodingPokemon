@@ -45,7 +45,8 @@ namespace LetsCreatePokemon.Services.World
             }, new Rectangle(0, 0, 16, 19)));
             entityNpc.AddComponent(new Animation(entityNpc, new AnimationSpinning(16, 20, 400)));
             entityNpc.AddComponent(new Collision(entityNpc,worldData));
-            entityNpc.AddComponent(new EventTriggerEyeContact(entityNpc, eventRunner, new List<IEvent> { new EventEmotion("npc", new EmotionTrainer())}, worldData));
+            entityNpc.AddComponent(new EventTriggerEyeContact(entityNpc, eventRunner, new List<IEvent> { new EventEmotion("npc", new EmotionTrainer()), new EventMovement("npc", new Vector2(8, 8))}, worldData));
+            entityNpc.AddComponent(new Movement(entityNpc, 1));
             entityList.Add(entityNpc);
             entityList.Add(entity);
             return entityList;

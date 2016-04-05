@@ -33,5 +33,18 @@ namespace LetsCreatePokemon.Services
                     throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
             }
         }
+
+        public static Directions ConvertVectorToDirection(Vector2 directionVector)
+        {
+            if(directionVector.X == -1 && directionVector.Y == 0)
+                return Directions.Left;
+            if (directionVector.X == 0 && directionVector.Y == -1)
+                return Directions.Up;
+            if (directionVector.X == 1 && directionVector.Y == 0)
+                return Directions.Right;
+            if (directionVector.X == 0 && directionVector.Y == 1)
+                return Directions.Down;
+            throw new Exception("Unable to convert direction vector to a direction");
+        }
     }
 }

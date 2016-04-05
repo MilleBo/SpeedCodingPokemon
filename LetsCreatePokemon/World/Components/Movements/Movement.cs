@@ -7,21 +7,21 @@ using Microsoft.Xna.Framework;
 
 namespace LetsCreatePokemon.World.Components.Movements
 {
-    internal abstract class Movement : Component, IUpdateComponent
+    internal class Movement : Component, IUpdateComponent
     {
         private readonly float speed;
         protected Vector2 wantedPosition;
-        protected bool InMovement;
-        private readonly AnimationWalking animationWalking; 
+        private readonly AnimationWalking animationWalking;
+        public bool InMovement { get; private set; }
 
-        protected Movement(IComponentOwner owner, float speed) : base(owner)
+        public Movement(IComponentOwner owner, float speed) : base(owner)
         {
             this.speed = speed;
             InMovement = false; 
             animationWalking = new AnimationWalking(16, 20, 2, Directions.Down);
         }
 
-        protected void Move(Directions direction)
+        public void Move(Directions direction)
         {
             var sprite = Owner.GetComponent<Sprite>();
             var wantedTilePosition = sprite.TilePosition + UtilityService.ConvertDirectionToVector(direction);
