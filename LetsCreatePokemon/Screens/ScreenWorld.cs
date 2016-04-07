@@ -3,6 +3,7 @@ using System.Linq;
 using LetsCreatePokemon.Services.Content;
 using LetsCreatePokemon.Services.Screens;
 using LetsCreatePokemon.Services.World;
+using LetsCreatePokemon.Services.World.EventSwitches;
 using LetsCreatePokemon.World;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -13,7 +14,8 @@ namespace LetsCreatePokemon.Screens
         private readonly ITileLoader tileLoader;
         private readonly IEntityLoader entityLoader;
         private readonly EventRunner eventRunner;
-        private readonly List<WorldObject> worldObjects;  
+        private readonly List<WorldObject> worldObjects;
+        private readonly EventSwitchHandler eventSwitchHandler;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:System.Object"/> class.
@@ -24,6 +26,8 @@ namespace LetsCreatePokemon.Screens
             this.entityLoader = entityLoader;
             this.eventRunner = eventRunner;
             worldObjects = new List<WorldObject>();
+            eventSwitchHandler = new EventSwitchHandler();
+            eventSwitchHandler.AddEventSwitch(new EventSwitch {Id = 1, Name = "Test", On = false}); 
         }
 
         public WorldObject GetWorldObject(string id)
@@ -43,8 +47,8 @@ namespace LetsCreatePokemon.Screens
 
         public override void LoadContent(IContentLoader contentLoader)
         {
-            worldObjects.AddRange(tileLoader.LoadTiles(""));
-            worldObjects.AddRange(entityLoader.LoadEntities("", this, eventRunner));
+            worldObjects.AddRange(tileLoader.LoadTiles("", eventSwitchHandler));
+            worldObjects.AddRange(entityLoader.LoadEntities("", this, eventRunner, eventSwitchHandler));
             GetComponents<ILoadContentComponent>().ForEach(c => c.LoadContent(contentLoader));
             eventRunner.LoadContent(this);
         }

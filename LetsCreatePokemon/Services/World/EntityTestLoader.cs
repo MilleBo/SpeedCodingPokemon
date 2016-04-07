@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using LetsCreatePokemon.Data;
 using LetsCreatePokemon.Inputs;
+using LetsCreatePokemon.Services.World.EventSwitches;
 using LetsCreatePokemon.World;
 using LetsCreatePokemon.World.Components;
 using LetsCreatePokemon.World.Components.Animations;
@@ -15,10 +16,10 @@ namespace LetsCreatePokemon.Services.World
 {
     internal class EntityTestLoader : IEntityLoader
     {
-        public IList<WorldObject> LoadEntities(string mapName, IWorldData worldData, IEventRunner eventRunner)
+        public IList<WorldObject> LoadEntities(string mapName, IWorldData worldData, IEventRunner eventRunner, EventSwitchHandler eventSwitchHandler)
         {
             var entityList = new List<WorldObject>();
-            var entity = new WorldObject("player");
+            var entity = new WorldObject("player", eventSwitchHandler);
             entity.AddComponent(new Sprite(entity, new SpriteData
             {
                 Color = Color.White,
@@ -31,9 +32,9 @@ namespace LetsCreatePokemon.Services.World
             entity.AddComponent(new MovementPlayer(entity, 1, new InputKeyboard()));
             entity.AddComponent(new Animation(entity));
             entity.AddComponent(new Collision(entity, worldData));
-            entity.AddComponent(new ComponentTest(entity, eventRunner, new InputKeyboard()));
+            entity.AddComponent(new ComponentTest(entity, eventRunner, new InputKeyboard(), eventSwitchHandler));
             //NPC
-            var entityNpc = new WorldObject("npc");
+            var entityNpc = new WorldObject("npc", eventSwitchHandler);
             entityNpc.AddComponent(new Sprite(entityNpc, new SpriteData
             {
                 Color = Color.White,
@@ -43,9 +44,9 @@ namespace LetsCreatePokemon.Services.World
                 XTilePosition = 4,
                 YTilePosition = 4
             }, new Rectangle(0, 0, 16, 19)));
-            entityNpc.AddComponent(new Animation(entityNpc, new AnimationSpinning(16, 20, 400)));
+            entityNpc.AddComponent(new Animation(entityNpc, new AnimationSpinning(16, 20, 400)), 1);
             entityNpc.AddComponent(new Collision(entityNpc,worldData));
-            entityNpc.AddComponent(new EventTriggerEyeContact(entityNpc, eventRunner, new List<IEvent> { new EventEmotion("npc", new EmotionTrainer()), new EventMovement("npc", new Vector2(8, 8))}, worldData));
+            //entityNpc.AddComponent(new EventTriggerEyeContact(entityNpc, eventRunner, new List<IEvent> { new EventEmotion("npc", new EmotionTrainer(eventSwitchHandler)), new EventMovement("npc", new Vector2(8, 8))}, worldData));
             entityNpc.AddComponent(new Movement(entityNpc, 1));
             entityList.Add(entityNpc);
             entityList.Add(entity);

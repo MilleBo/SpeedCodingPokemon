@@ -1,5 +1,6 @@
 ﻿using LetsCreatePokemon.Data;
 using LetsCreatePokemon.Services.Content;
+using LetsCreatePokemon.Services.World.EventSwitches;
 using LetsCreatePokemon.World.Components;
 using LetsCreatePokemon.World.Components.Animations;
 using Microsoft.Xna.Framework;
@@ -15,9 +16,9 @@ namespace LetsCreatePokemon.World.Emotions
         private float extraY; 
         public bool IsDone { get; private set; }
 
-        public EmotionTrainer()
+        public EmotionTrainer(IEventSwitchPriority eventSwitchPriority)
         {
-            worldObject = new WorldObject("emotion");
+            worldObject = new WorldObject("emotion", eventSwitchPriority);
             worldObject.AddComponent(new Sprite(worldObject, new SpriteData
             {
                 Color = Color.White,

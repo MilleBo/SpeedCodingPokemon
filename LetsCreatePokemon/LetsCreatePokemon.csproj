@@ -112,6 +112,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\World\EntityTestLoader.cs" />
     <Compile Include="Services\World\EventRunner.cs" />
+    <Compile Include="Services\World\EventSwitches\EventSwitch.cs" />
+    <Compile Include="Services\World\EventSwitches\EventSwitchHandler.cs" />
+    <Compile Include="Services\World\EventSwitches\IEventSwitchPriority.cs" />
+    <Compile Include="Services\World\EventSwitches\IEventSwitchUpdater.cs" />
     <Compile Include="Services\World\IEntityLoader.cs" />
     <Compile Include="Services\World\IEventRunner.cs" />
     <Compile Include="Services\World\ITileLoader.cs" />
