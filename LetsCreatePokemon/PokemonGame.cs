@@ -10,6 +10,7 @@ using LetsCreatePokemon.Screens;
 using LetsCreatePokemon.Screens.ScreenTransitionEffects;
 using LetsCreatePokemon.Services.Content;
 using LetsCreatePokemon.Services.Screens;
+using LetsCreatePokemon.Services.Windows;
 using LetsCreatePokemon.Services.World;
 using LetsCreatePokemon.World;
 using LetsCreatePokemon.World.Components.Tiles;
@@ -30,6 +31,7 @@ namespace LetsCreatePokemon
         WorldObject entity;
         IContentLoader contentLoader;
         ScreenLoader screenLoader;
+        WindowHandler windowHandler;
 
         public PokemonGame()
         {
@@ -44,6 +46,7 @@ namespace LetsCreatePokemon
             screenLoader = new ScreenLoader(new ScreenTransitionEffectFadeOut(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, 5),
                 new ScreenTransitionEffectFadeIn(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, 3), contentLoader);
             screenLoader.LoadScreen(new ScreenWorld(screenLoader, new TileTestLoader(), new EntityTestLoader(), new EventRunner(contentLoader)));
+            windowHandler = new WindowHandler(contentLoader);
         }
 
         /// <summary>
@@ -69,6 +72,7 @@ namespace LetsCreatePokemon
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             screenLoader.LoadContent();
+            windowHandler.QueueWindow(new WindowTest(new Vector2(5, 113), 230, 45));
 
         }
 
@@ -99,6 +103,7 @@ namespace LetsCreatePokemon
 
             spriteBatch.Begin();
             screenLoader.Draw(spriteBatch);
+            windowHandler.Draw(spriteBatch);
             spriteBatch.End();
 
             return base.BeginDraw();

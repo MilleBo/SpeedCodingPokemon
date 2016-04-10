@@ -110,6 +110,10 @@
     <Compile Include="Inputs\Input.cs" />
     <Compile Include="Inputs\InputKeyboard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Windows\IWindowQueuer.cs" />
+    <Compile Include="Services\Windows\Window.cs" />
+    <Compile Include="Services\Windows\WindowHandler.cs" />
+    <Compile Include="Services\Windows\WindowTest.cs" />
     <Compile Include="Services\World\EntityTestLoader.cs" />
     <Compile Include="Services\World\EventRunner.cs" />
     <Compile Include="Services\World\EventSwitches\EventSwitch.cs" />
@@ -192,6 +196,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\NPC\rock_trainer.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Windows\windowframe.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="project.json" />
