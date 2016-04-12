@@ -22,6 +22,8 @@ namespace LetsCreatePokemon.Inputs
             remove { newInput -= value;  }
         }
 
+        public bool ThrottleInput { get; set; }
+
         protected Input()
         {
             counter = 0;

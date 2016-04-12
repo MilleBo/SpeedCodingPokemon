@@ -35,8 +35,11 @@ namespace LetsCreatePokemon.Inputs
         {
             if (keyboardState.IsKeyDown(key))
             {
-                SendNewInput(sendInputs);
-                lastKey = key; 
+                if (!ThrottleInput || (ThrottleInput && lasKeyboardState.IsKeyUp(key)))
+                {
+                    SendNewInput(sendInputs);
+                    lastKey = key;
+                }
             }
         }
     }

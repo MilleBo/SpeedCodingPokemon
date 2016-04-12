@@ -36,7 +36,7 @@ namespace LetsCreatePokemon.Services.Windows
 
         public abstract void Update(double gameTime);
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             DrawCorners(spriteBatch);
             DrawSides(spriteBatch);

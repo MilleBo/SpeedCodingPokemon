@@ -6,11 +6,13 @@
 //------------------------------------------------------
 
 using System.Collections.Generic;
+using LetsCreatePokemon.Inputs;
 using LetsCreatePokemon.Screens;
 using LetsCreatePokemon.Screens.ScreenTransitionEffects;
 using LetsCreatePokemon.Services.Content;
 using LetsCreatePokemon.Services.Screens;
 using LetsCreatePokemon.Services.Windows;
+using LetsCreatePokemon.Services.Windows.Message;
 using LetsCreatePokemon.Services.World;
 using LetsCreatePokemon.World;
 using LetsCreatePokemon.World.Components.Tiles;
@@ -72,8 +74,12 @@ namespace LetsCreatePokemon
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             screenLoader.LoadContent();
-            windowHandler.QueueWindow(new WindowTest(new Vector2(5, 113), 230, 45));
-
+            windowHandler.QueueWindow(new WindowMessage(new Vector2(5, 113), 230, 45, "Hey, Im Ash and youre going down! Hey, Im Ash and youre going down! " +
+                                                                                      "Hey, Im Ash and youre going down! Hey, Im Ash and youre going down! " +
+                                                                                      "Hey, Im Ash and youre going down! Hey, Im Ash and youre going down! " +
+                                                                                      "Hey, Im Ash and youre going down! Hey, Im Ash and youre going down!",
+                                                                                      new InputKeyboard()));
+            
         }
 
         /// <summary>
@@ -93,6 +99,7 @@ namespace LetsCreatePokemon
         protected override void Update(GameTime gameTime)
         {
             screenLoader.Update(gameTime.ElapsedGameTime.Milliseconds);
+            windowHandler.Update(gameTime.ElapsedGameTime.Milliseconds);
             base.Update(gameTime);
         }
 
