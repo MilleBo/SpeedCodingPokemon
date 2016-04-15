@@ -76,11 +76,11 @@ namespace LetsCreatePokemon
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             screenLoader.LoadContent();
-            windowHandler.QueueWindow(new WindowMessage(new Vector2(5, 113), 230, 45, "Hey, Im Ash and youre going down! Hey, Im Ash and youre going down! " +
-                                                                                      "Hey, Im Ash and youre going down! Hey, Im Ash and youre going down! " +
-                                                                                      "Hey, Im Ash and youre going down! Hey, Im Ash and youre going down! " +
-                                                                                      "Hey, Im Ash and youre going down! Hey, Im Ash and youre going down!",
-                                                                                      new InputKeyboard()));
+            //windowHandler.QueueWindow(new WindowMessage(new Vector2(5, 113), 230, 45, "Hey, Im Ash and youre going down! Hey, Im Ash and youre going down! " +
+            //                                                                          "Hey, Im Ash and youre going down! Hey, Im Ash and youre going down! " +
+            //                                                                          "Hey, Im Ash and youre going down! Hey, Im Ash and youre going down! " +
+            //                                                                          "Hey, Im Ash and youre going down! Hey, Im Ash and youre going down!",
+            //                                                                          new InputKeyboard()));
             
         }
 

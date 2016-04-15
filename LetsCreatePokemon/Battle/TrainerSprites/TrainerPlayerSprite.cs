@@ -7,7 +7,7 @@ namespace LetsCreatePokemon.Battle.TrainerSprites
     {
         public TrainerPlayerSprite(string textureName) : base(textureName)
         {
-            position = new Vector2(304, 48);
+            position = new Vector2(240, 48);
         }
 
         public override void Update(double gameTime)

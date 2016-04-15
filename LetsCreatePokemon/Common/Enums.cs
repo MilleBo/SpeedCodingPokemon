@@ -23,4 +23,11 @@ namespace LetsCreatePokemon.Common
         Right = 3,
         Down = 0
     }
+
+    public enum PokemonStates
+    {
+        Normal,
+        Dead, 
+        StatusEffect
+    }
 }

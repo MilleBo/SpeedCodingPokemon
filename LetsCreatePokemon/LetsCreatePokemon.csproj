@@ -103,6 +103,9 @@
     <Compile Include="Battle\Phases\IPhase.cs" />
     <Compile Include="Battle\Phases\PhaseTrainerIntro.cs" />
     <Compile Include="Battle\Trainer.cs" />
+    <Compile Include="Battle\TrainerPokemonStatuses\TrainerOpponentPokemonStatus.cs" />
+    <Compile Include="Battle\TrainerPokemonStatuses\TrainerPlayerPokemonStatus.cs" />
+    <Compile Include="Battle\TrainerPokemonStatuses\TrainerPokemonStatus.cs" />
     <Compile Include="Battle\TrainerSprites\TrainerOpponentSprite.cs" />
     <Compile Include="Battle\TrainerSprites\TrainerPlayerSprite.cs" />
     <Compile Include="Battle\TrainerSprites\TrainerSprite.cs" />
@@ -124,6 +127,7 @@
     <Compile Include="Services\Windows\Message\MessagePage.cs" />
     <Compile Include="Services\Windows\Message\WindowMessage.cs" />
     <Compile Include="Services\Windows\Window.cs" />
+    <Compile Include="Services\Windows\WindowBattle.cs" />
     <Compile Include="Services\Windows\WindowHandler.cs" />
     <Compile Include="Services\Windows\WindowTest.cs" />
     <Compile Include="Services\World\EntityTestLoader.cs" />
@@ -219,13 +223,28 @@
     <Content Include="Content\Textures\Windows\message_arrow.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\BattleBackgrounds\background.xnb">
+    <Content Include="Content\Textures\Battle\Backgrounds\background.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Trainers\bug_catcher.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Trainers\trainer_back_single.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Battle\Gui\StatusPokemonBallDead.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Battle\Gui\StatusPokemonBallNormal.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Battle\Gui\StatusPokemonBallStatusEffect.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Battle\Gui\BattleNumberOfPokemons.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Windows\windowBattleFrame.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="project.json" />
