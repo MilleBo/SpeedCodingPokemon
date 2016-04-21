@@ -18,6 +18,8 @@ namespace LetsCreatePokemon.Battle.TrainerPokemonStatuses
         protected float Speed;
         private double counter;
 
+        public bool IsDone { get; set; }
+
         protected TrainerPokemonStatus(IList<PokemonStates> states)
         {
             this.states = states;
@@ -50,7 +52,10 @@ namespace LetsCreatePokemon.Battle.TrainerPokemonStatuses
                 Speed *= SpeedDowngradeMultiplier;
                 counter = 0; 
             }
+            AnimationDone();
         }
+
+        protected abstract void AnimationDone();
 
         public abstract void Draw(SpriteBatch spriteBatch);
     }

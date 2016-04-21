@@ -14,6 +14,14 @@ namespace LetsCreatePokemon.Battle.TrainerPokemonStatuses
             Speed = -5.0f;
         }
 
+        protected override void AnimationDone()
+        {
+            if (Speed > -0.1f)
+            {
+                IsDone = true; 
+            }
+        }
+
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(BarTexture, Position, Color.White);

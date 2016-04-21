@@ -20,6 +20,8 @@ namespace LetsCreatePokemon.Services.Windows.Message
         private int pageIndex;
         private MessageArrow messageArrow;
 
+        public Color FontColor { get; set; }
+
         public WindowMessage(Vector2 position, int width, int height, string text, Input input) : base(position, width, height)
         {
             this.text = text;
@@ -30,6 +32,7 @@ namespace LetsCreatePokemon.Services.Windows.Message
             pageIndex = 0; 
             margin = new Vector2(10);
             messageArrow = new MessageArrow(position + new Vector2(width - margin.X*1.6f, height - margin.Y*1.6f));
+            FontColor = Color.Gray;
         }
 
         private void InputOnNewInput(object sender, NewInputEventArgs newInputEventArgs)
@@ -69,14 +72,23 @@ namespace LetsCreatePokemon.Services.Windows.Message
             {
                 var word = words[index];
                 var oldRowLength = rowText.Length;
+
+                //Force a new page if we have a new line in the text
+                if (word == Environment.NewLine)
+                {
+                    CreatePage(font, rowText);
+                    rowIndex = 0;
+                    index++;
+                    continue; 
+                }
+
                 rowText.Append($"{word} ");
                 if (font.MeasureString(rowText).X > Width - margin.X)
                 {
                     rowText.Remove(oldRowLength, rowText.Length - oldRowLength);
                     if (rowIndex == MaxNumberOfRows - 1)
                     {
-                        pages.Add(new MessagePage(rowText.ToString(), Position + margin, font));
-                        rowText.Clear();
+                        CreatePage(font, rowText);
                         rowIndex = 0;
                     }
                     else
@@ -92,8 +104,14 @@ namespace LetsCreatePokemon.Services.Windows.Message
             }
             if (rowText.Length > 0)
             {
-                pages.Add(new MessagePage(rowText.ToString(), Position + margin, font));
+                pages.Add(new MessagePage(rowText.ToString(), Position + margin, font, FontColor));
             }
+        }
+
+        private void CreatePage(SpriteFont font, StringBuilder rowText)
+        {
+            pages.Add(new MessagePage(rowText.ToString(), Position + margin, font, FontColor));
+            rowText.Clear();
         }
 
         public override void Update(double gameTime)

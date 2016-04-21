@@ -3,19 +3,29 @@ using System.Collections.Generic;
 using LetsCreatePokemon.Battle.TrainerPokemonStatuses;
 using LetsCreatePokemon.Battle.TrainerSprites;
 using LetsCreatePokemon.Common;
+using LetsCreatePokemon.Inputs;
 using LetsCreatePokemon.Services.Content;
+using LetsCreatePokemon.Services.Windows;
+using LetsCreatePokemon.Services.Windows.Message;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace LetsCreatePokemon.Battle.Phases
 {
     internal class PhaseTrainerIntro : IPhase
     {
-        public bool IsDone { get; }
+        private enum Phases { ShowTrainers, ShowGui, ShowMessage }
+        private Phases currentPhases;
+        private readonly Trainer trainer;
+        private readonly IWindowQueuer windowQueuer;
         private readonly List<TrainerSprite> trainerSprites;
-        private readonly List<TrainerPokemonStatus> trainerPokemonStatuses; 
+        private readonly List<TrainerPokemonStatus> trainerPokemonStatuses;
+        public bool IsDone { get; }
 
-        public PhaseTrainerIntro(Trainer trainer)
+        public PhaseTrainerIntro(Trainer trainer, IWindowQueuer windowQueuer)
         {
+            this.trainer = trainer;
+            this.windowQueuer = windowQueuer;
+            currentPhases = Phases.ShowTrainers;
             trainerSprites = new List<TrainerSprite>
             {
                 new TrainerOpponentSprite(trainer.TextureName),
@@ -45,13 +55,52 @@ namespace LetsCreatePokemon.Battle.Phases
 
         public void Update(double gameTime)
         {
-            trainerSprites.ForEach(t => t.Update(gameTime));
-            trainerPokemonStatuses.ForEach(t => t.Update(gameTime));
+            switch (currentPhases)
+            {
+                case Phases.ShowTrainers:
+                    ShowTrainers(gameTime);
+                    break;
+                case Phases.ShowGui:
+                    ShowGui(gameTime);
+                    break;
+                case Phases.ShowMessage:
+                    ShowMessage();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
+
+        private void ShowTrainers(double gameTime)
+        {
+            trainerSprites.ForEach(t => t.Update(gameTime));
+            if (trainerSprites.TrueForAll(t => t.IsDone))
+            {
+                currentPhases = Phases.ShowGui;
+            }
+        }
+
+        private void ShowGui(double gameTime)
+        {
+            trainerPokemonStatuses.ForEach(t => t.Update(gameTime));
+            if (trainerPokemonStatuses.TrueForAll(t => t.IsDone))
+            {
+                currentPhases = Phases.ShowMessage;
+                windowQueuer.QueueWindow(new WindowBattleMessage($"{trainer.Name} would like to battle! {Environment.NewLine} {trainer.Name} sent out Weedle!", new InputKeyboard()));
+            }
+        }
+
+        private void ShowMessage()
+        {
+            if (windowQueuer.WindowActive)
+                return;
+            //Go to next phase 
+        }
+
 
         public IPhase GetNextPhase()
         {
-            return null; 
+            return null;
         }
 
         public void Draw(SpriteBatch spriteBatch)

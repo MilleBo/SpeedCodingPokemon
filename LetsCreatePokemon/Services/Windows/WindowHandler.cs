@@ -12,6 +12,8 @@ namespace LetsCreatePokemon.Services.Windows
         private readonly Queue<Window> windows;
         private Window currentWindow;
 
+        public bool WindowActive => windows.Any(); 
+
         public WindowHandler(IContentLoader contentLoader)
         {
             this.contentLoader = contentLoader; 

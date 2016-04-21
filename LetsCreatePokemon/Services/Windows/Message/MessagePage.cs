@@ -7,6 +7,7 @@ namespace LetsCreatePokemon.Services.Windows.Message
     {
         private const int CharacterDelay = 200; 
         private readonly SpriteFont font;
+        private readonly Color fontColor;
         private readonly string fullText;
         private readonly Vector2 position;
         private int index;
@@ -14,11 +15,12 @@ namespace LetsCreatePokemon.Services.Windows.Message
 
         public bool IsDone { get; set; }
 
-        public MessagePage(string text, Vector2 position, SpriteFont font)
+        public MessagePage(string text, Vector2 position, SpriteFont font, Color fontColor)
         {
             this.fullText = text;
             this.position = position;
             this.font = font;
+            this.fontColor = fontColor;
             index = 0;
             counter = 0;
         }
@@ -45,7 +47,7 @@ namespace LetsCreatePokemon.Services.Windows.Message
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(font, fullText.Substring(0, index), position, Color.Gray);
+            spriteBatch.DrawString(font, fullText.Substring(0, index), position, fontColor);
         }
     }
 }

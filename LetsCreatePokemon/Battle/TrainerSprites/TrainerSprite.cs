@@ -10,6 +10,8 @@ namespace LetsCreatePokemon.Battle.TrainerSprites
         protected Vector2 position;
         private readonly string textureName;
 
+        public bool IsDone { get; set; }
+
         protected TrainerSprite(string textureName)
         {
             this.textureName = textureName;

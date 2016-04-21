@@ -125,6 +125,7 @@
     <Compile Include="Services\Windows\IWindowQueuer.cs" />
     <Compile Include="Services\Windows\Message\MessageArrow.cs" />
     <Compile Include="Services\Windows\Message\MessagePage.cs" />
+    <Compile Include="Services\Windows\Message\WindowBattleMessage.cs" />
     <Compile Include="Services\Windows\Message\WindowMessage.cs" />
     <Compile Include="Services\Windows\Window.cs" />
     <Compile Include="Services\Windows\WindowBattle.cs" />

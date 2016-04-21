@@ -13,8 +13,14 @@ namespace LetsCreatePokemon.Battle.TrainerSprites
         public override void Update(double gameTime)
         {
             if (Math.Abs(position.X - 20) < 5)
-                return;
-            position -= new Vector2(3, 0);
+            {
+                IsDone = true;
+            }
+            else
+            {
+                position -= new Vector2(3, 0);
+            }
+
         }
     }
 }
