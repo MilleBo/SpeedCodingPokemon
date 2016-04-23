@@ -18,7 +18,7 @@ namespace LetsCreatePokemon.Battle.TrainerPokemonStatuses
         protected float Speed;
         private double counter;
 
-        public bool IsDone { get; set; }
+        public abstract bool IsDone { get; }
 
         protected TrainerPokemonStatus(IList<PokemonStates> states)
         {
@@ -45,6 +45,8 @@ namespace LetsCreatePokemon.Battle.TrainerPokemonStatuses
 
         public void Update(double gameTime)
         {
+            if (IsDone)
+                return; 
             Position += new Vector2(Speed, 0);
             counter += gameTime;
             if (counter > SpeedDowngradeCooldown)
@@ -52,11 +54,9 @@ namespace LetsCreatePokemon.Battle.TrainerPokemonStatuses
                 Speed *= SpeedDowngradeMultiplier;
                 counter = 0; 
             }
-            AnimationDone();
         }
 
-        protected abstract void AnimationDone();
-
+        public abstract void StartMoveOut();
         public abstract void Draw(SpriteBatch spriteBatch);
     }
 }

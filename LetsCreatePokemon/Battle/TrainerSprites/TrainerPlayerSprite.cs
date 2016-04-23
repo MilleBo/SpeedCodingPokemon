@@ -7,20 +7,18 @@ namespace LetsCreatePokemon.Battle.TrainerSprites
     {
         public TrainerPlayerSprite(string textureName) : base(textureName)
         {
-            position = new Vector2(240, 48);
+            Position = new Vector2(240, 48);
+            WantedPosition = new Vector2(20, 48);
         }
 
-        public override void Update(double gameTime)
+        protected override void Move()
         {
-            if (Math.Abs(position.X - 20) < 5)
-            {
-                IsDone = true;
-            }
-            else
-            {
-                position -= new Vector2(3, 0);
-            }
+            Position -= new Vector2(3, 0);
+        }
 
+        public override void StartMoveOut()
+        {
+            WantedPosition = new Vector2(-64, 48);
         }
     }
 }

@@ -7,18 +7,17 @@ namespace LetsCreatePokemon.Battle.TrainerPokemonStatuses
 {
     class TrainerOpponentPokemonStatus : TrainerPokemonStatus
     {
+        public override bool IsDone => Speed < 0.1f;
+
         public TrainerOpponentPokemonStatus(IList<PokemonStates> states) : base(states)
         {
             Position = new Vector2(-104, 30);
             Speed = 5.0f; 
         }
 
-        protected override void AnimationDone()
+        public override void StartMoveOut()
         {
-            if (Speed < 0.1f)
-            {
-                IsDone = true; 
-            }
+            Speed = 15.0f; 
         }
 
         public override void Draw(SpriteBatch spriteBatch)

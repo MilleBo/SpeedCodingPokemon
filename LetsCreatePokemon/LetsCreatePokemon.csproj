@@ -100,7 +100,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Battle\Common\PokeBall.cs" />
+    <Compile Include="Battle\Common\PokeballOpenEffect.cs" />
     <Compile Include="Battle\Phases\IPhase.cs" />
+    <Compile Include="Battle\Phases\TrainerPhases\OpponentTrainerFirstPokemonPhase.cs" />
+    <Compile Include="Battle\Phases\TrainerPhases\OpponentTrainerOutPhase.cs" />
     <Compile Include="Battle\Phases\TrainerPhases\TrainerMessagePhase.cs" />
     <Compile Include="Battle\Phases\TrainerPhases\TrainerStartPhase.cs" />
     <Compile Include="Battle\Phases\TrainerPhases\TrainerStatusPhase.cs" />
@@ -248,6 +252,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Windows\windowBattleFrame.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Battle\Pokeballs\pokeball_open_effect.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Battle\Pokeballs\pokeball_regular.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="project.json" />
