@@ -9,6 +9,7 @@ namespace LetsCreatePokemon.Screens
 {
     internal class ScreenBattle : Screen
     {
+        private IContentLoader contentLoader;
         private IPhase currentPhase;
         private WindowBattle windowBattle;
         private Texture2D backgroundTexture; 
@@ -27,11 +28,17 @@ namespace LetsCreatePokemon.Screens
             backgroundTexture = contentLoader.LoadTexture("Battle/Backgrounds/background");
             windowBattle.LoadContent(contentLoader);
             currentPhase.LoadContent(contentLoader);
+            this.contentLoader = contentLoader;
         }
 
         public override void Update(double gameTime)
         {
             currentPhase.Update(gameTime);
+            if (currentPhase.IsDone)
+            {
+                currentPhase = currentPhase.GetNextPhase();
+                currentPhase.LoadContent(contentLoader);
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)

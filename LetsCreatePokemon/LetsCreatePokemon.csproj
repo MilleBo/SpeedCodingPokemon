@@ -101,7 +101,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Battle\Phases\IPhase.cs" />
-    <Compile Include="Battle\Phases\PhaseTrainerIntro.cs" />
+    <Compile Include="Battle\Phases\TrainerPhases\TrainerMessagePhase.cs" />
+    <Compile Include="Battle\Phases\TrainerPhases\TrainerStartPhase.cs" />
+    <Compile Include="Battle\Phases\TrainerPhases\TrainerStatusPhase.cs" />
     <Compile Include="Battle\Trainer.cs" />
     <Compile Include="Battle\TrainerPokemonStatuses\TrainerOpponentPokemonStatus.cs" />
     <Compile Include="Battle\TrainerPokemonStatuses\TrainerPlayerPokemonStatus.cs" />
