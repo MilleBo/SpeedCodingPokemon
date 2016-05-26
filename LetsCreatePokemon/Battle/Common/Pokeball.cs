@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LetsCreatePokemon.Pokemons.Battle.EnterBattleAnimations;
 using LetsCreatePokemon.Services.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -18,6 +19,7 @@ namespace LetsCreatePokemon.Battle.Common
         private const int PokeballHeight = 12; 
 
         private readonly Vector2 position;
+        private readonly IEnterBattleAnimation enterBattleAnimation;
         private readonly List<PokeBallOpenEffect> pokeballOpenEffects;
         private Texture2D pokeballTexture;
         private IContentLoader contentLoader;
@@ -27,9 +29,10 @@ namespace LetsCreatePokemon.Battle.Common
 
         public bool IsDone { get; set; }
 
-        public PokeBall(Vector2 position)
+        public PokeBall(Vector2 position, IEnterBattleAnimation enterBattleAnimation)
         {
             this.position = position;
+            this.enterBattleAnimation = enterBattleAnimation;
             pokeballOpenEffects = new List<PokeBallOpenEffect>();
             rnd = new Random();
         }
@@ -48,15 +51,25 @@ namespace LetsCreatePokemon.Battle.Common
                 isOpen = true;
                 counter = 0;
                 CreatePokeballOpenEffects();
+                enterBattleAnimation.StartBattleAnimation();
             }
             if (isOpen)
             {
-                if (counter > TimeOpen)
-                {
-                    IsDone = true; 
-                }
+                UpdateOpenPokeball(gameTime);
+            }
+        }
+
+        private void UpdateOpenPokeball(double gameTime)
+        {
+            if (counter < TimeOpen)
+            {
                 pokeballOpenEffects.ForEach(p => p.Update(gameTime));
             }
+            if (!enterBattleAnimation.IsDone)
+            {
+                enterBattleAnimation.Update(gameTime);
+            }
+            IsDone = counter > TimeOpen && enterBattleAnimation.IsDone;
         }
 
         private void CreatePokeballOpenEffects()
@@ -78,6 +91,7 @@ namespace LetsCreatePokemon.Battle.Common
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            if (IsDone) return; 
             spriteBatch.Draw(pokeballTexture, position, new Rectangle(PokeballWidth * (isOpen ? 1 : 0), 0, PokeballWidth, PokeballHeight), Color.White);
             pokeballOpenEffects.ForEach(p => p.Draw(spriteBatch));
         }
