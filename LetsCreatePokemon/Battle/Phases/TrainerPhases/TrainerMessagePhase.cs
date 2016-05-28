@@ -15,23 +15,21 @@ namespace LetsCreatePokemon.Battle.Phases.TrainerPhases
 {
     class TrainerMessagePhase : IPhase
     {
-        private readonly Trainer trainer;
         private readonly List<TrainerSprite> trainerSprites;
         private readonly List<TrainerPokemonStatus> trainerPokemonStatuses;
-        private readonly IWindowQueuer windowQueuer;
+        private IWindowQueuer windowQueuer;
         public bool IsDone { get; set; }
 
-        public TrainerMessagePhase(Trainer trainer, List<TrainerSprite> trainerSprites, List<TrainerPokemonStatus> trainerPokemonStatuses, IWindowQueuer windowQueuer)
+        public TrainerMessagePhase(List<TrainerSprite> trainerSprites, List<TrainerPokemonStatus> trainerPokemonStatuses)
         {
-            this.trainer = trainer;
             this.trainerSprites = trainerSprites;
             this.trainerPokemonStatuses = trainerPokemonStatuses;
-            this.windowQueuer = windowQueuer;
         }
 
-        public void LoadContent(IContentLoader contentLoader)
+        public void LoadContent(IContentLoader contentLoader, IWindowQueuer windowQueuer, BattleData battleData)
         {
-            windowQueuer.QueueWindow(new WindowBattleMessage($"{trainer.Name} would like to battle! {Environment.NewLine} {trainer.Name} sent out Weedle!", new InputKeyboard()));
+            this.windowQueuer = windowQueuer;
+            windowQueuer.QueueWindow(new WindowBattleMessage($"{battleData.Opponent.Name} would like to battle! {Environment.NewLine} {battleData.Opponent.Name} sent out Weedle!", new InputKeyboard()));
         }
 
         public void Update(double gameTime)
@@ -41,7 +39,7 @@ namespace LetsCreatePokemon.Battle.Phases.TrainerPhases
 
         public IPhase GetNextPhase()
         {
-            return new OpponentTrainerOutPhase(trainer, trainerSprites, trainerPokemonStatuses, windowQueuer);
+            return new OpponentTrainerOutPhase(trainerSprites, trainerPokemonStatuses);
         }
 
         public void Draw(SpriteBatch spriteBatch)

@@ -100,6 +100,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Battle\BattleData.cs" />
     <Compile Include="Battle\Common\PokeBall.cs" />
     <Compile Include="Battle\Common\PokeballOpenEffect.cs" />
     <Compile Include="Battle\Phases\IPhase.cs" />

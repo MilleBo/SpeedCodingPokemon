@@ -14,21 +14,17 @@ namespace LetsCreatePokemon.Battle.Phases.TrainerPhases
 {
     class TrainerStatusPhase : IPhase
     {
-        private readonly Trainer trainer;
         private readonly List<TrainerSprite> trainerSprites;
-        private readonly IWindowQueuer windowQueuer;
         private List<TrainerPokemonStatus> trainerPokemonStatuses;
         public bool IsDone { get; set; }
 
-        public TrainerStatusPhase(Trainer trainer, List<TrainerSprite> trainerSprites, IWindowQueuer windowQueuer)
+        public TrainerStatusPhase(List<TrainerSprite> trainerSprites)
         {
-            this.trainer = trainer;
             this.trainerSprites = trainerSprites;
-            this.windowQueuer = windowQueuer;
         }
 
 
-        public void LoadContent(IContentLoader contentLoader)
+        public void LoadContent(IContentLoader contentLoader, IWindowQueuer windowQueuer, BattleData battleData)
         {
             trainerPokemonStatuses = new List<TrainerPokemonStatus>
             {
@@ -55,7 +51,7 @@ namespace LetsCreatePokemon.Battle.Phases.TrainerPhases
 
         public IPhase GetNextPhase()
         {
-            return new TrainerMessagePhase(trainer, trainerSprites, trainerPokemonStatuses, windowQueuer);
+            return new TrainerMessagePhase(trainerSprites, trainerPokemonStatuses);
         }
 
         public void Draw(SpriteBatch spriteBatch)

@@ -6,6 +6,7 @@
 //------------------------------------------------------
 
 using System.Collections.Generic;
+using LetsCreatePokemon.Battle;
 using LetsCreatePokemon.Battle.Phases;
 using LetsCreatePokemon.Battle.Phases.TrainerPhases;
 using LetsCreatePokemon.Inputs;
@@ -51,7 +52,7 @@ namespace LetsCreatePokemon
             screenLoader = new ScreenLoader(new ScreenTransitionEffectFadeOut(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, 5),
                 new ScreenTransitionEffectFadeIn(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, 3), contentLoader);
             //screenLoader.LoadScreen(new ScreenWorld(screenLoader, new TileTestLoader(), new EntityTestLoader(), new EventRunner(contentLoader)));
-            screenLoader.LoadScreen(new ScreenBattle(screenLoader, new TrainerStartPhase(new TrainerTestLoader().LoadTrainer(1), windowHandler)));
+            screenLoader.LoadScreen(new ScreenBattle(screenLoader, windowHandler, new TrainerStartPhase(), new BattleData(new TrainerTestLoader().LoadTrainer(1), new TrainerTestLoader().LoadTrainer(1))));
         }
 
         /// <summary>

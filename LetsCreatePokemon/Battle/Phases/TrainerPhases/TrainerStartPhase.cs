@@ -8,22 +8,14 @@ namespace LetsCreatePokemon.Battle.Phases.TrainerPhases
 {
     internal class TrainerStartPhase : IPhase
     {
-        private readonly Trainer trainer;
-        private readonly IWindowQueuer windowQueuer;
         private List<TrainerSprite> trainerSprites;
         public bool IsDone { get; set; }
 
-        public TrainerStartPhase(Trainer trainer, IWindowQueuer windowQueuer)
-        {
-            this.trainer = trainer;
-            this.windowQueuer = windowQueuer;            
-        }
-
-        public void LoadContent(IContentLoader contentLoader)
+        public void LoadContent(IContentLoader contentLoader, IWindowQueuer windowQueuer, BattleData battleData)
         {
             trainerSprites = new List<TrainerSprite>
             {
-                new TrainerOpponentSprite(trainer.TextureName),
+                new TrainerOpponentSprite(battleData.Opponent.TextureName),
                 new TrainerPlayerSprite("Trainers/trainer_back_single")
             };
             trainerSprites.ForEach(t => t.LoadContent(contentLoader));
@@ -37,7 +29,7 @@ namespace LetsCreatePokemon.Battle.Phases.TrainerPhases
 
         public IPhase GetNextPhase()
         {
-            return new TrainerStatusPhase(trainer, trainerSprites, windowQueuer);
+            return new TrainerStatusPhase(trainerSprites);
         }
 
         public void Draw(SpriteBatch spriteBatch)

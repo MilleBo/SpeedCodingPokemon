@@ -17,27 +17,22 @@ namespace LetsCreatePokemon.Battle.Phases.TrainerPhases
 {
     class OpponentTrainerFirstPokemonPhase : IPhase
     {
-        private readonly Trainer trainer;
         private readonly List<TrainerSprite> trainerSprites;
         private readonly List<TrainerPokemonStatus> trainerPokemonStatuses;
-        private readonly IWindowQueuer windowQueuer;
         private readonly PokeBall pokeBall;
         private readonly IPokemonBattleSprite pokemonBattleSpriteTest;
         public bool IsDone { get; private set; }
 
-        public OpponentTrainerFirstPokemonPhase(Trainer trainer, List<TrainerSprite> trainerSprites, List<TrainerPokemonStatus> trainerPokemonStatuses, IWindowQueuer windowQueuer)
+        public OpponentTrainerFirstPokemonPhase(List<TrainerSprite> trainerSprites, List<TrainerPokemonStatus> trainerPokemonStatuses)
         {
-            this.trainer = trainer;
             this.trainerSprites = trainerSprites;
             this.trainerPokemonStatuses = trainerPokemonStatuses;
-            this.windowQueuer = windowQueuer;
             PokemonBattleSprite pokemonBattleSpriteTest = new PokemonBattleSprite(new PokemonBattleSpriteData(0, 0, new Vector2(165, 55), Color.White, "Pokemons/weedle_front"));
             pokeBall = new PokeBall(new Vector2(165, 55), new EnterBattleAnimationTransparent(pokemonBattleSpriteTest.GetPokemonBattleSpriteData()));
             this.pokemonBattleSpriteTest = pokemonBattleSpriteTest;
-
         }
 
-        public void LoadContent(IContentLoader contentLoader)
+        public void LoadContent(IContentLoader contentLoader, IWindowQueuer windowQueuer, BattleData battleData)
         {
             pokeBall.LoadContent(contentLoader);
             pokemonBattleSpriteTest.LoadContent(contentLoader);

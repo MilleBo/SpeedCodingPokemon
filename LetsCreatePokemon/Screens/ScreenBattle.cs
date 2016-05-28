@@ -1,4 +1,5 @@
-﻿using LetsCreatePokemon.Battle.Phases;
+﻿using LetsCreatePokemon.Battle;
+using LetsCreatePokemon.Battle.Phases;
 using LetsCreatePokemon.Services.Content;
 using LetsCreatePokemon.Services.Screens;
 using LetsCreatePokemon.Services.Windows;
@@ -10,15 +11,19 @@ namespace LetsCreatePokemon.Screens
     internal class ScreenBattle : Screen
     {
         private IContentLoader contentLoader;
+        private readonly IWindowQueuer windowQueuer;
         private IPhase currentPhase;
-        private WindowBattle windowBattle;
+        private readonly BattleData battleData;
+        private readonly WindowBattle windowBattle;
         private Texture2D backgroundTexture; 
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:System.Object"/> class.
         /// </summary>
-        public ScreenBattle(IScreenLoader screenLoader, IPhase startPhase) : base(screenLoader)
+        public ScreenBattle(IScreenLoader screenLoader, IWindowQueuer windowQueuer, IPhase startPhase, BattleData battleData) : base(screenLoader)
         {
+            this.windowQueuer = windowQueuer;
+            this.battleData = battleData;
             currentPhase = startPhase;
             windowBattle = new WindowBattle(new Vector2(0, 113), 240, 45);
         }
@@ -27,7 +32,7 @@ namespace LetsCreatePokemon.Screens
         {
             backgroundTexture = contentLoader.LoadTexture("Battle/Backgrounds/background");
             windowBattle.LoadContent(contentLoader);
-            currentPhase.LoadContent(contentLoader);
+            currentPhase.LoadContent(contentLoader, windowQueuer, battleData);
             this.contentLoader = contentLoader;
         }
 
@@ -37,7 +42,7 @@ namespace LetsCreatePokemon.Screens
             if (currentPhase.IsDone)
             {
                 currentPhase = currentPhase.GetNextPhase();
-                currentPhase.LoadContent(contentLoader);
+                currentPhase.LoadContent(contentLoader, windowQueuer, battleData);
             }
         }
 

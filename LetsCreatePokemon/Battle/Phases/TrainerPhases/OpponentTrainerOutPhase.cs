@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using LetsCreatePokemon.Battle.TrainerPokemonStatuses;
 using LetsCreatePokemon.Battle.TrainerSprites;
 using LetsCreatePokemon.Services.Content;
@@ -13,21 +10,17 @@ namespace LetsCreatePokemon.Battle.Phases.TrainerPhases
 {
     class OpponentTrainerOutPhase : IPhase
     {
-        private readonly Trainer trainer;
         private readonly List<TrainerSprite> trainerSprites;
         private readonly List<TrainerPokemonStatus> trainerPokemonStatuses;
-        private readonly IWindowQueuer windowQueuer;
         public bool IsDone { get; private set; }
 
-        public OpponentTrainerOutPhase(Trainer trainer, List<TrainerSprite> trainerSprites, List<TrainerPokemonStatus> trainerPokemonStatuses, IWindowQueuer windowQueuer)
+        public OpponentTrainerOutPhase(List<TrainerSprite> trainerSprites, List<TrainerPokemonStatus> trainerPokemonStatuses)
         {
-            this.trainer = trainer;
             this.trainerSprites = trainerSprites;
             this.trainerPokemonStatuses = trainerPokemonStatuses;
-            this.windowQueuer = windowQueuer;
         }
 
-        public void LoadContent(IContentLoader contentLoader)
+        public void LoadContent(IContentLoader contentLoader, IWindowQueuer windowQueuer, BattleData battleData)
         {
             foreach (var trainerSprite in trainerSprites.Where(t => t is TrainerOpponentSprite))
             {
@@ -48,7 +41,7 @@ namespace LetsCreatePokemon.Battle.Phases.TrainerPhases
 
         public IPhase GetNextPhase()
         {
-           return new OpponentTrainerFirstPokemonPhase(trainer, trainerSprites, trainerPokemonStatuses, windowQueuer);
+           return new OpponentTrainerFirstPokemonPhase(trainerSprites, trainerPokemonStatuses);
         }
 
         public void Draw(SpriteBatch spriteBatch)
