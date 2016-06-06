@@ -18,7 +18,7 @@ namespace LetsCreatePokemon.Battle.TrainerPokemonStatuses
 
         public override void StartMoveOut()
         {
-            Speed = -5.0f; 
+            Speed = -15.0f; 
         }
 
         public override void Draw(SpriteBatch spriteBatch)

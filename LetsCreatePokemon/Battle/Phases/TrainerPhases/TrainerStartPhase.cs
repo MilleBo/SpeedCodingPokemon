@@ -16,7 +16,7 @@ namespace LetsCreatePokemon.Battle.Phases.TrainerPhases
             trainerSprites = new List<TrainerSprite>
             {
                 new TrainerOpponentSprite(battleData.Opponent.TextureName),
-                new TrainerPlayerSprite("Trainers/trainer_back_single")
+                new TrainerPlayerSprite("Trainers/trainer_back")
             };
             trainerSprites.ForEach(t => t.LoadContent(contentLoader));
         }

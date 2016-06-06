@@ -104,9 +104,11 @@
     <Compile Include="Battle\Common\PokeBall.cs" />
     <Compile Include="Battle\Common\PokeballOpenEffect.cs" />
     <Compile Include="Battle\Phases\IPhase.cs" />
+    <Compile Include="Battle\Phases\PlayerPhases\PlayerTrainerOutPhase.cs" />
     <Compile Include="Battle\Phases\TrainerPhases\OpponentTrainerFirstPokemonPhase.cs" />
     <Compile Include="Battle\Phases\TrainerPhases\OpponentTrainerOutPhase.cs" />
     <Compile Include="Battle\Phases\TrainerPhases\TrainerMessagePhase.cs" />
+    <Compile Include="Battle\Phases\TrainerPhases\TrainerOutPhase.cs" />
     <Compile Include="Battle\Phases\TrainerPhases\TrainerStartPhase.cs" />
     <Compile Include="Battle\Phases\TrainerPhases\TrainerStatusPhase.cs" />
     <Compile Include="Battle\Trainer.cs" />
@@ -268,6 +270,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Pokemons\weedle_front.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Trainers\trainer_back.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="project.json" />

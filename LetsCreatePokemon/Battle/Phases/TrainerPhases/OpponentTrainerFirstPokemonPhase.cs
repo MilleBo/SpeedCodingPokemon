@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LetsCreatePokemon.Battle.Common;
+using LetsCreatePokemon.Battle.Phases.PlayerPhases;
 using LetsCreatePokemon.Battle.TrainerPokemonStatuses;
 using LetsCreatePokemon.Battle.TrainerSprites;
 using LetsCreatePokemon.Pokemons.Battle;
@@ -41,11 +42,12 @@ namespace LetsCreatePokemon.Battle.Phases.TrainerPhases
         public void Update(double gameTime)
         {
             pokeBall.Update(gameTime);
+            IsDone = pokeBall.IsDone;
         }
 
         public IPhase GetNextPhase()
         {
-            return null; 
+            return new PlayerTrainerOutPhase(trainerSprites, trainerPokemonStatuses);
         }
 
         public void Draw(SpriteBatch spriteBatch)

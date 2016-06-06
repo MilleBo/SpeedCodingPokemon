@@ -11,7 +11,7 @@ namespace LetsCreatePokemon.Battle.TrainerSprites
             WantedPosition = new Vector2(140, 10);
         }
 
-        protected override void Move()
+        protected override void Move(double gameTime)
         {
             Position += new Vector2(3, 0);
         }

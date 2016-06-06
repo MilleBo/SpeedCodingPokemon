@@ -7,6 +7,10 @@ namespace LetsCreatePokemon.Battle.TrainerSprites
 {
     internal abstract class TrainerSprite
     {
+        protected const int TrainerTextureHeight = 64;
+        protected const int TrainerTextureWidth = 64;
+
+        protected Rectangle DrawRectangle;
         private Texture2D texture;
         protected Vector2 Position;
         protected Vector2 WantedPosition;
@@ -17,6 +21,7 @@ namespace LetsCreatePokemon.Battle.TrainerSprites
         protected TrainerSprite(string textureName)
         {
             this.textureName = textureName;
+            DrawRectangle = new Rectangle(0, 0, TrainerTextureWidth, TrainerTextureHeight);
         }
 
         public void LoadContent(IContentLoader contentLoader)
@@ -28,16 +33,16 @@ namespace LetsCreatePokemon.Battle.TrainerSprites
         {
             if (IsDone)
                 return;
-            Move();
+            Move(gameTime);
         }
 
-        protected abstract void Move();
+        protected abstract void Move(double gameTime);
 
         public abstract void StartMoveOut();
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, Position, Color.White);
+            spriteBatch.Draw(texture, Position, DrawRectangle, Color.White);
         }
     }
 }
