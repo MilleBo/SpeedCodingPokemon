@@ -49,8 +49,8 @@ namespace LetsCreatePokemon.Screens
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(backgroundTexture, new Vector2(0), Color.White);
-            windowBattle.Draw(spriteBatch);
             currentPhase.Draw(spriteBatch);
+            windowBattle.Draw(spriteBatch);
         }
     }
 }

@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LetsCreatePokemon.Battle.Common;
+using LetsCreatePokemon.Battle.Common.PokeBallEnterAnimations;
 using LetsCreatePokemon.Battle.Phases.PlayerPhases;
 using LetsCreatePokemon.Battle.TrainerPokemonStatuses;
 using LetsCreatePokemon.Battle.TrainerSprites;
 using LetsCreatePokemon.Pokemons.Battle;
-using LetsCreatePokemon.Pokemons.Battle.EnterBattleAnimations;
+using LetsCreatePokemon.Pokemons.Battle.PokemonEnterBattleAnimations;
 using LetsCreatePokemon.Services.Content;
 using LetsCreatePokemon.Services.Windows;
 using Microsoft.Xna.Framework;
@@ -28,8 +29,8 @@ namespace LetsCreatePokemon.Battle.Phases.TrainerPhases
         {
             this.trainerSprites = trainerSprites;
             this.trainerPokemonStatuses = trainerPokemonStatuses;
-            PokemonBattleSprite pokemonBattleSpriteTest = new PokemonBattleSprite(new PokemonBattleSpriteData(0, 0, new Vector2(165, 55), Color.White, "Pokemons/weedle_front"));
-            pokeBall = new PokeBall(new Vector2(165, 55), new EnterBattleAnimationTransparent(pokemonBattleSpriteTest.GetPokemonBattleSpriteData()));
+            PokemonBattleSprite pokemonBattleSpriteTest = new PokemonBattleSprite(new PokemonBattleSpriteData(0, 0, new Vector2(165, 55), Color.White, "Pokemons/weedle_front", PokemonBattleSpriteData.PokemonFacings.Front));
+            pokeBall = new PokeBall(new PokeBallData(new Vector2(165, 55), "Battle/Pokeballs/pokeball_regular"), new NoPokeBallEnterAnimation(), new TransparentPokemonEnterBattleAnimation(pokemonBattleSpriteTest.GetPokemonBattleSpriteData()));
             this.pokemonBattleSpriteTest = pokemonBattleSpriteTest;
         }
 
@@ -47,7 +48,7 @@ namespace LetsCreatePokemon.Battle.Phases.TrainerPhases
 
         public IPhase GetNextPhase()
         {
-            return new PlayerTrainerOutPhase(trainerSprites, trainerPokemonStatuses);
+            return new PlayerTrainerOutPhase(trainerSprites, trainerPokemonStatuses, pokemonBattleSpriteTest);
         }
 
         public void Draw(SpriteBatch spriteBatch)

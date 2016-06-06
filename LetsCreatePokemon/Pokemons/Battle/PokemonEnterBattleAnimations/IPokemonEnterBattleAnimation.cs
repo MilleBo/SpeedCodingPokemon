@@ -1,6 +1,6 @@
-﻿namespace LetsCreatePokemon.Pokemons.Battle.EnterBattleAnimations
+﻿namespace LetsCreatePokemon.Pokemons.Battle.PokemonEnterBattleAnimations
 {
-    interface IEnterBattleAnimation
+    interface IPokemonEnterBattleAnimation
     {
         bool IsDone { get; }
         void StartBattleAnimation();

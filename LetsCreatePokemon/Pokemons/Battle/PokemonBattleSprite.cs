@@ -26,8 +26,8 @@ namespace LetsCreatePokemon.Pokemons.Battle
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, pokemonBattleSpriteDate.DrawRectangle, new Rectangle(0, 0, texture.Width, texture.Height), 
-                pokemonBattleSpriteDate.Color, 0f, new Vector2(texture.Width/2, texture.Height/2), SpriteEffects.None, 0);
+            spriteBatch.Draw(texture, pokemonBattleSpriteDate.Rectangle, pokemonBattleSpriteDate.DrawRectangle, 
+                pokemonBattleSpriteDate.Color, 0f, new Vector2(PokemonBattleSpriteData.TextureWidth/ 2, PokemonBattleSpriteData.TextureHeight / 2), SpriteEffects.None, 0);
         }
 
 

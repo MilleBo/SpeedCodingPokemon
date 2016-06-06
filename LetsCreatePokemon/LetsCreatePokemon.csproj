@@ -102,6 +102,10 @@
     </Compile>
     <Compile Include="Battle\BattleData.cs" />
     <Compile Include="Battle\Common\PokeBall.cs" />
+    <Compile Include="Battle\Common\PokeBallData.cs" />
+    <Compile Include="Battle\Common\PokeBallEnterAnimations\IPokeBallEnterAnimation.cs" />
+    <Compile Include="Battle\Common\PokeBallEnterAnimations\PlayerCastingPokeBallEnterAnimation.cs" />
+    <Compile Include="Battle\Common\PokeBallEnterAnimations\NoPokeBallEnterAnimation.cs" />
     <Compile Include="Battle\Common\PokeballOpenEffect.cs" />
     <Compile Include="Battle\Phases\IPhase.cs" />
     <Compile Include="Battle\Phases\PlayerPhases\PlayerTrainerOutPhase.cs" />
@@ -127,8 +131,9 @@
     <Compile Include="PokemonGame.cs" />
     <Compile Include="Inputs\Input.cs" />
     <Compile Include="Inputs\InputKeyboard.cs" />
-    <Compile Include="Pokemons\Battle\EnterBattleAnimations\EnterBattleAnimationTransparent.cs" />
-    <Compile Include="Pokemons\Battle\EnterBattleAnimations\IEnterBattleAnimation.cs" />
+    <Compile Include="Pokemons\Battle\PokemonEnterBattleAnimations\GrowPokemonEnterBattleAnimation.cs" />
+    <Compile Include="Pokemons\Battle\PokemonEnterBattleAnimations\TransparentPokemonEnterBattleAnimation.cs" />
+    <Compile Include="Pokemons\Battle\PokemonEnterBattleAnimations\IPokemonEnterBattleAnimation.cs" />
     <Compile Include="Pokemons\Battle\PokemonBattleSpriteData.cs" />
     <Compile Include="Pokemons\Battle\IPokemonBattleSprite.cs" />
     <Compile Include="Pokemons\Battle\IPokemonBattleSpriteData.cs" />
@@ -273,6 +278,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Trainers\trainer_back.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Pokemons\charmander.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="project.json" />

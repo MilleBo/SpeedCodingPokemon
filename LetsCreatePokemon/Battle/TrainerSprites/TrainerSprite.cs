@@ -12,10 +12,11 @@ namespace LetsCreatePokemon.Battle.TrainerSprites
 
         protected Rectangle DrawRectangle;
         private Texture2D texture;
-        protected Vector2 Position;
+
         protected Vector2 WantedPosition;
         private readonly string textureName;
 
+        public Vector2 Position { get; protected set; }
         public bool IsDone => Math.Abs(Position.X - WantedPosition.X) < 5;
 
         protected TrainerSprite(string textureName)
