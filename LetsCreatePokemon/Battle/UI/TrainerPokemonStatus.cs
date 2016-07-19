@@ -5,7 +5,7 @@ using LetsCreatePokemon.Services.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace LetsCreatePokemon.Battle.TrainerPokemonStatuses
+namespace LetsCreatePokemon.Battle.UI
 {
     internal abstract class TrainerPokemonStatus
     {

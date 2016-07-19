@@ -3,7 +3,7 @@ using LetsCreatePokemon.Common;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace LetsCreatePokemon.Battle.TrainerPokemonStatuses
+namespace LetsCreatePokemon.Battle.UI
 {
     class TrainerOpponentPokemonStatus : TrainerPokemonStatus
     {

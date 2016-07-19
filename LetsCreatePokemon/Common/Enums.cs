@@ -30,4 +30,10 @@ namespace LetsCreatePokemon.Common
         Dead, 
         StatusEffect
     }
+
+    public enum Genders
+    {
+        Male, 
+        Female
+    } 
 }

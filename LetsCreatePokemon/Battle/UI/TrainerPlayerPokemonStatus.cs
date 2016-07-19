@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using LetsCreatePokemon.Common;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace LetsCreatePokemon.Battle.TrainerPokemonStatuses
+namespace LetsCreatePokemon.Battle.UI
 {
     internal class TrainerPlayerPokemonStatus : TrainerPokemonStatus
     {

@@ -3,8 +3,8 @@ using System.Linq;
 using LetsCreatePokemon.Battle.Common;
 using LetsCreatePokemon.Battle.Common.PokeBallEnterAnimations;
 using LetsCreatePokemon.Battle.Phases.TrainerPhases;
-using LetsCreatePokemon.Battle.TrainerPokemonStatuses;
 using LetsCreatePokemon.Battle.TrainerSprites;
+using LetsCreatePokemon.Battle.UI;
 using LetsCreatePokemon.Pokemons.Battle;
 using LetsCreatePokemon.Pokemons.Battle.PokemonEnterBattleAnimations;
 using LetsCreatePokemon.Services.Content;
@@ -40,7 +40,7 @@ namespace LetsCreatePokemon.Battle.Phases.PlayerPhases
             base.Update(gameTime);
             if (!ShowPokeBall()) return; 
             pokeBall.Update(gameTime);
-            IsDone = false;
+            IsDone = pokeBall.IsDone;
         }
 
         public bool ShowPokeBall()
@@ -50,7 +50,7 @@ namespace LetsCreatePokemon.Battle.Phases.PlayerPhases
 
         public override IPhase GetNextPhase()
         {
-            return null; 
+            return new PickAttackPhase(pokemonBattleSpriteTest, opponentPokemonBattleSprite);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
