@@ -17,6 +17,7 @@ namespace LetsCreatePokemon.Battle.UI
 
         public override void Update(double gameTime)
         {
+            base.Update(gameTime);
             directionCounter += gameTime;
             if (directionCounter > 500)
             {

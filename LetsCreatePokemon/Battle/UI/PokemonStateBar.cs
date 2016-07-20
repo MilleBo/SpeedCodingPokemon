@@ -20,10 +20,12 @@ namespace LetsCreatePokemon.Battle.UI
         private Texture2D genderTexture;
         private SpriteFont font;
         protected Vector2 BasePosition;
+        public HealthBar HealthBar { get; private set; }
 
         protected PokemonStateBar(IPokemonBattleData pokemonBattleData)
         {
             this.pokemonBattleData = pokemonBattleData;
+            HealthBar = new HealthBar(pokemonBattleData.CurrentHealth, pokemonBattleData.MaxHealth);
         }
 
         public void LoadContent(IContentLoader contentLoader)
@@ -33,9 +35,13 @@ namespace LetsCreatePokemon.Battle.UI
             genderTexture = pokemonBattleData.Gender == Genders.Male
                 ? contentLoader.LoadTexture("Battle/Gui/MaleIcon")
                 : contentLoader.LoadTexture("Battle/Gui/FemaleIcon");
+            HealthBar.LoadContent(contentLoader);
         }
 
-        public abstract void Update(double gameTime);
+        public virtual void Update(double gameTime)
+        {
+            HealthBar.Update();
+        }
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -43,6 +49,7 @@ namespace LetsCreatePokemon.Battle.UI
             spriteBatch.DrawString(font, pokemonBattleData.Name, new Vector2(BasePosition.X  + 17, BasePosition.Y + 5), Color.Gray);
             spriteBatch.Draw(genderTexture, new Vector2(BasePosition.X  + 20 + font.MeasureString(pokemonBattleData.Name).X, BasePosition.Y + 5), Color.White);
             spriteBatch.DrawString(font, $"Lv{pokemonBattleData.Level}", new Vector2(BasePosition.X + 85, BasePosition.Y + 5), Color.Gray);
+            HealthBar.Draw(spriteBatch, BasePosition);
         }
     }
 }

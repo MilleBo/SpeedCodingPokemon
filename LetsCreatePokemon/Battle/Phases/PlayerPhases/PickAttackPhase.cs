@@ -20,6 +20,10 @@ namespace LetsCreatePokemon.Battle.Phases.PlayerPhases
         private PokemonStateBar playerPokemonStateBar;
         public bool IsDone { get; }
 
+        //FOR HEALTHBAR TEST
+        private double counter; 
+        private Random rnd = new Random();
+
         /// <summary>
         /// Initializes a new instance of the <see cref="T:System.Object"/> class.
         /// </summary>
@@ -38,6 +42,14 @@ namespace LetsCreatePokemon.Battle.Phases.PlayerPhases
         public void Update(double gameTime)
         {
             playerPokemonStateBar.Update(gameTime);
+
+            //HEALTHBAR TEST
+            counter += gameTime;
+            if (counter > 1000)
+            {
+                playerPokemonStateBar.HealthBar.UpdateHealth(rnd.Next(0, 21), 21);
+                counter = 0;
+            }
         }
 
         public IPhase GetNextPhase()
