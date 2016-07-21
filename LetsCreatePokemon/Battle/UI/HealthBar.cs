@@ -23,12 +23,14 @@ namespace LetsCreatePokemon.Battle.UI
         private HealthState currentHealthState;
         private Texture2D texture;
         private int wantedHealth;
+        private int barWidth; 
 
         public HealthBar(int currentHealth, int maxHealth)
         {
             this.currentHealth = currentHealth;
-            wantedHealth = currentHealth;
             this.maxHealth = maxHealth;
+            wantedHealth = currentHealth;
+            UpdateHealthState();
         }
 
         public void LoadContent(IContentLoader contentLoader)
@@ -57,6 +59,7 @@ namespace LetsCreatePokemon.Battle.UI
             {
                 currentHealthState = HealthState.Normal;
             }
+            barWidth = (int)(((float)currentHealth / maxHealth) * 50);
         }
 
         public void Update()
@@ -76,10 +79,7 @@ namespace LetsCreatePokemon.Battle.UI
 
         public void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
-            for (int n = 0; n < ((float) currentHealth/(float) maxHealth)*50; n++)
-            {
-                spriteBatch.Draw(texture, new Rectangle((int)position.X + 51 + n, (int)position.Y + 18, 2, 4), new Rectangle(0, 3 * (int)currentHealthState, 1, 3), Color.White);
-            }
+            spriteBatch.Draw(texture, new Rectangle((int)position.X + 51, (int)position.Y + 18, barWidth, 4), new Rectangle(0, 3 * (int)currentHealthState, 1, 3), Color.White);
         }
 
     }
